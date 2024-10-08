@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "nr1-viz-leaderboard",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "nr1 nerdpack:serve",
+    "test": "exit 0"
+  },
+  "nr1": {
+    "uuid": "e87ee42d-2f7b-4111-a64b-c51b074130cd"
+  },
+  "dependencies": {
+    "prop-types": "15.7.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "recharts": "^2.12.7"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not ie < 11",
+    "not dead"
+  ]
+}

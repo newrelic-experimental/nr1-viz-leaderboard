@@ -1,0 +1,77 @@
+.leaderboard-container {
+  width: 100%;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.leaderboard-header {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  font-weight: bold;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ccc;
+}
+
+.leaderboard-header > div {
+  padding: 4px;
+}
+
+.leaderboard-rows {
+  width: 100%;
+}
+
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.leaderboard-item__position {
+  width: calc(10% - 10px);
+  text-align: center;
+  flex-grow: 1;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.leaderboard-item__progress,
+.leaderboard-item__percentage-change {
+  width: calc(15% - 10px);
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.leaderboard-item__image {
+  width: calc(15% - 10px);
+  text-align: center;
+  flex-grow: 1;
+}
+
+.leaderboard-item__image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.leaderboard-item__name-units {
+  width: calc(30% - 10px);
+  text-align: left;
+  flex-grow: 2;
+}
+
+.shuffle-button {
+  margin: 16px auto;
+  display: block;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
