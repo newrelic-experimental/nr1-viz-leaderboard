@@ -7,7 +7,6 @@ import { LeaderboardItemProps } from "./components/LeaderboardItem";
 
 const initialData: LeaderboardItemProps[] = [
   {
-    position: 1,
     imageUrl: "https://picsum.photos/id/1/200",
     name: "Item 1",
     units: 100,
@@ -17,7 +16,6 @@ const initialData: LeaderboardItemProps[] = [
     previousValue: 700,
   },
   {
-    position: 2,
     imageUrl: "https://picsum.photos/id/2/200",
     name: "Item 2",
     units: 50,
@@ -27,7 +25,6 @@ const initialData: LeaderboardItemProps[] = [
     previousValue: 500,
   },
   {
-    position: 3,
     imageUrl: "https://picsum.photos/id/3/200",
     name: "Item 3",
     units: 200,
@@ -37,7 +34,6 @@ const initialData: LeaderboardItemProps[] = [
     previousValue: 1100,
   },
   {
-    position: 4,
     imageUrl: "https://picsum.photos/id/5/200",
     name: "Item 5",
     units: 300,
@@ -47,7 +43,6 @@ const initialData: LeaderboardItemProps[] = [
     previousValue: 400,
   },
   {
-    position: 5,
     imageUrl: "https://picsum.photos/id/4/200",
     name: "Item 4",
     units: 150,

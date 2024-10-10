@@ -1,4 +1,5 @@
 import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { useNerdGraphQuery } from "../hooks/nerdGraph/useNerdGraphQuery";
 import { useProps } from "../context/VizPropsProvider";
@@ -33,9 +34,20 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ data: items }) => {
         <div className="leaderboard-item__percentage-change">Change</div>
       </div>
       <div className="leaderboard-rows">
-        {items.map((item: LeaderboardItemProps) => (
-          <LeaderboardItem key={item.position} item={item} />
-        ))}
+        <AnimatePresence>
+          {items.map((item: LeaderboardItemProps, index: number) => (
+            <motion.div
+              key={item.name}
+              layout
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5 }}
+            >
+              <LeaderboardItem item={{ ...item, position: index + 1 }} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );

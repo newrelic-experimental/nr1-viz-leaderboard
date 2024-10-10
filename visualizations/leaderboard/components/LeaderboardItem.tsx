@@ -4,7 +4,7 @@ import { ProgressBar } from "./ProgressBar";
 import { ChangeIndicator } from "./ChangeIndicator";
 
 export type LeaderboardItemProps = {
-  position: number;
+  position?: number;
   imageUrl: string;
   name: string;
   units: number;
@@ -28,10 +28,6 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemProps }> = ({
     previousValue,
   } = item;
 
-  const percentageChange =
-    previousValue !== 0
-      ? ((currentValue - previousValue) / previousValue) * 100
-      : 0;
   const percentageTargetAchieved =
     target !== 0 ? (currentValue / target) * 100 : 0;
 
