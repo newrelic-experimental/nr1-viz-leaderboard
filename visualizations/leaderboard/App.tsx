@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { AutoSizer } from "nr1";
 
 import { EmptyState } from "./components/EmptyState";
-import { Leaderboard, LeaderboardItemProps } from "./components/Leaderboard";
+import { Leaderboard } from "./components/Leaderboard";
+import { LeaderboardItemProps } from "./components/LeaderboardItem";
 
 const initialData: LeaderboardItemProps[] = [
   {
@@ -37,23 +38,23 @@ const initialData: LeaderboardItemProps[] = [
   },
   {
     position: 4,
-    imageUrl: "https://picsum.photos/id/4/200",
-    name: "Item 4",
-    units: 150,
-    pricePerUnit: 15,
-    target: 2000,
-    currentValue: 1800,
-    previousValue: 1700,
-  },
-  {
-    position: 5,
     imageUrl: "https://picsum.photos/id/5/200",
     name: "Item 5",
     units: 300,
     pricePerUnit: 2,
     target: 1000,
-    currentValue: 500,
+    currentValue: 400,
     previousValue: 400,
+  },
+  {
+    position: 5,
+    imageUrl: "https://picsum.photos/id/4/200",
+    name: "Item 4",
+    units: 150,
+    pricePerUnit: 15,
+    target: 2000,
+    currentValue: 200,
+    previousValue: 300,
   },
 ];
 
