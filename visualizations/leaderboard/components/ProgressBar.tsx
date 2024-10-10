@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 interface ProgressBarProps {
   percentage: number;
@@ -15,10 +16,13 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ percentage }) => {
 
   return (
     <div className="progress-bar" style={{ height: "15px" }}>
-      <div
+      <motion.div
         className={`progress-bar__fill ${progressBarClass}`}
-        style={{ width: `${percentage}%` }}
-      ></div>
+        style={{ height: "100%" }}
+        initial={{ width: 0 }}
+        animate={{ width: `${percentage}%` }}
+        transition={{ duration: 1 }}
+      ></motion.div>
       <div className="progress-bar__value">{percentage.toFixed(2)}%</div>
     </div>
   );

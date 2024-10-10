@@ -63,7 +63,10 @@ export const App = ({ accountId }) => {
     useState<LeaderboardItemProps[]>(initialData);
 
   const shuffleData = () => {
-    const shuffledData = [...leaderboardData].sort(() => Math.random() - 0.5);
+    const shuffledData = [...leaderboardData].map((item, index) => ({
+      ...item,
+      currentValue: Math.floor(Math.random() * item.target),
+    }));
     setLeaderboardData(shuffledData);
   };
 

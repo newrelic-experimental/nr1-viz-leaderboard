@@ -24,6 +24,7 @@ $shadow-color: rgba(0, 0, 0, 0.05);
     background-color: $header-bg-color;
     color: $header-text-color;
     border-bottom: 1px solid $border-color;
+    cursor: pointer;
 
     > div {
       padding: 8px;
