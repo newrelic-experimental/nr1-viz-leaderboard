@@ -1,0 +1,30 @@
+$color-positive: #4caf50;
+$color-negative: #f44336;
+$color-neutral: #888;
+
+.change-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  color: #000;
+
+  .arrow-up,
+  .arrow-down,
+  .no-change {
+    font-size: 1.5rem;
+  }
+
+  .arrow-up {
+    color: $color-positive;
+  }
+
+  .arrow-down {
+    color: $color-negative;
+  }
+
+  .no-change {
+    color: $color-neutral;
+  }
+}

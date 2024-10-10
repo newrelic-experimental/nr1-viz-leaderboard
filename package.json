@@ -10,14 +10,19 @@
     "uuid": "e87ee42d-2f7b-4111-a64b-c51b074130cd"
   },
   "dependencies": {
+    "framer-motion": "^4.1.17",
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-flip-numbers": "^3.0.8",
     "recharts": "^2.12.7"
   },
   "browserslist": [
     "last 2 versions",
     "not ie < 11",
     "not dead"
-  ]
+  ],
+  "devDependencies": {
+    "@types/react": "^18.3.11"
+  }
 }

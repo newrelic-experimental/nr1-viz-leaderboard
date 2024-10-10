@@ -1,4 +1,7 @@
 @import "./styles/Leaderboard.scss";
+@import "./styles/LeaderboardItem.scss";
+@import "./styles/ProgressBar.scss";
+@import "./styles/ChangeIndicator.scss";
 
 // ErrorState.tsx and EmptyState.tsx
 .EmptyState,
@@ -42,4 +45,22 @@
 
 .ErrorState-headingText {
   color: darkgrey;
+}
+
+.shuffle-button {
+  margin: 16px auto;
+  display: block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #0070f3;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #005bb5;
+  }
 }

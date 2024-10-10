@@ -1,79 +1,21 @@
 import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
 import { useNerdGraphQuery } from "../hooks/nerdGraph/useNerdGraphQuery";
 import { useProps } from "../context/VizPropsProvider";
+import { useSortableItems } from "../hooks/sort/useSortableItems";
 
-export type LeaderboardItemProps = {
-  position: number;
-  imageUrl: string;
-  name: string;
-  units: number;
-  pricePerUnit: number;
-  target: number;
-  currentValue: number;
-  previousValue: number;
-};
+import { LeaderboardItem, LeaderboardItemProps } from "./LeaderboardItem";
 
 export type LeaderboardProps = {
   data: LeaderboardItemProps[];
-};
-
-const LeaderboardItem: React.FC<{ item: LeaderboardItemProps }> = ({
-  item,
-}) => {
-  const {
-    position,
-    imageUrl,
-    name,
-    units,
-    pricePerUnit,
-    target,
-    currentValue,
-    previousValue,
-  } = item;
-
-  const percentageChange =
-    previousValue !== 0
-      ? ((currentValue - previousValue) / previousValue) * 100
-      : 0;
-  const percentageTargetAchieved =
-    target !== 0 ? (currentValue / target) * 100 : 0;
-
-  return (
-    <div className="leaderboard-item">
-      <div className="leaderboard-item__position">{position}</div>
-
-      <div className="leaderboard-item__image">
-        <img src={imageUrl} alt={name} />
-      </div>
-
-      <div className="leaderboard-item__name-units">
-        <div>
-          <strong>{name}</strong>
-        </div>
-        <div>
-          {units} units @ £{pricePerUnit.toFixed(2)}
-        </div>
-      </div>
-
-      <div className="leaderboard-item__progress">
-        <div>
-          {currentValue} / {target}
-        </div>
-        <div>({percentageTargetAchieved.toFixed(2)}%)</div>
-      </div>
-
-      <div className="leaderboard-item__percentage-change">
-        <div>{percentageChange.toFixed(2)}%</div>
-        <div>({percentageTargetAchieved.toFixed(2)}% achieved)</div>
-      </div>
-    </div>
-  );
 };
 
 type QueryResponse = {
   value: number;
   value_text: string;
   value_heading: string;
+  image_url: string;
 };
 
 export const Leaderboard: React.FC<LeaderboardProps> = ({ data: items }) => {
@@ -83,19 +25,52 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ data: items }) => {
 
   console.log("data", data);
 
+  const { sortedItems, toggleSort, sort } = useSortableItems(items);
+
   return (
     <div className="leaderboard-container">
       <div className="leaderboard-header">
         <div className="leaderboard-item__position"></div>
         <div className="leaderboard-item__image">Image</div>
-        <div className="leaderboard-item__name-units">Name & Units</div>
-        <div className="leaderboard-item__progress">Progress</div>
-        <div className="leaderboard-item__percentage-change">Change</div>
+        <div
+          className="leaderboard-item__name-units"
+          onClick={() => toggleSort("name")}
+        >
+          Name & Units{" "}
+          {sort.key === "name" && (sort.direction === "asc" ? "▲" : "▼")}
+        </div>
+        <div
+          className="leaderboard-item__progress"
+          onClick={() => toggleSort("currentValue")}
+        >
+          Progress{" "}
+          {sort.key === "currentValue" &&
+            (sort.direction === "asc" ? "▲" : "▼")}
+        </div>
+        <div
+          className="leaderboard-item__percentage-change"
+          onClick={() => toggleSort("previousValue")}
+        >
+          Change{" "}
+          {sort.key === "previousValue" &&
+            (sort.direction === "asc" ? "▲" : "▼")}
+        </div>
       </div>
       <div className="leaderboard-rows">
-        {items.map((item: LeaderboardItemProps) => (
-          <LeaderboardItem key={item.position} item={item} />
-        ))}
+        <AnimatePresence>
+          {sortedItems.map((item: LeaderboardItemProps, index: number) => (
+            <motion.div
+              key={item.name}
+              layout
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 1.5 }}
+            >
+              <LeaderboardItem item={{ ...item, position: index + 1 }} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );
