@@ -3,23 +3,14 @@ import FlipNumbers from "react-flip-numbers";
 import { motion } from "framer-motion";
 
 export const ChangeIndicator: React.FC<{
-  currentValue: number;
-  previousValue: number;
-}> = ({ currentValue, previousValue }) => {
-  const percentageChange =
-    previousValue !== 0
-      ? ((currentValue - previousValue) / previousValue) * 100
-      : 0;
-
+  change: number;
+  changeUnits: string;
+}> = ({ change, changeUnits }) => {
   return (
     <div className="change-indicator-wrapper">
       <div
         className={`change-indicator ${
-          percentageChange > 0
-            ? "positive"
-            : percentageChange < 0
-            ? "negative"
-            : "neutral"
+          change > 0 ? "positive" : change < 0 ? "negative" : "neutral"
         }`}
       >
         <FlipNumbers
@@ -29,10 +20,10 @@ export const ChangeIndicator: React.FC<{
           background="white"
           play
           perspective={100}
-          numbers={percentageChange.toFixed(2)}
+          numbers={change.toFixed(2)}
         />
-        %
-        {percentageChange > 0 ? (
+        <span>{changeUnits}</span>
+        {change > 0 ? (
           <motion.span
             className="arrow-up"
             initial={{ opacity: 0 }}
@@ -41,7 +32,7 @@ export const ChangeIndicator: React.FC<{
           >
             ⬆
           </motion.span>
-        ) : percentageChange < 0 ? (
+        ) : change < 0 ? (
           <motion.span
             className="arrow-down"
             initial={{ opacity: 0 }}

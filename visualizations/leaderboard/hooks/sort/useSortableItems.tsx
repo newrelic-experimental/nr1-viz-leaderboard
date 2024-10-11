@@ -9,7 +9,7 @@ export type Sort = {
 
 export const useSortableItems = (items: Array<LeaderboardItemProps>) => {
   const [sort, setSort] = useState<Sort>({
-    key: "currentValue",
+    key: "position",
     direction: "desc",
   });
 

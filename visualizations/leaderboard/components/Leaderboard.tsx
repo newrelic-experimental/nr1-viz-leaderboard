@@ -1,8 +1,5 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-import { useNerdGraphQuery } from "../hooks/nerdGraph/useNerdGraphQuery";
-import { useProps } from "../context/VizPropsProvider";
 import { useSortableItems } from "../hooks/sort/useSortableItems";
 
 import { LeaderboardItem, LeaderboardItemProps } from "./LeaderboardItem";
@@ -11,20 +8,7 @@ export type LeaderboardProps = {
   data: LeaderboardItemProps[];
 };
 
-type QueryResponse = {
-  value: number;
-  value_text: string;
-  value_heading: string;
-  image_url: string;
-};
-
 export const Leaderboard: React.FC<LeaderboardProps> = ({ data: items }) => {
-  const { query } = useProps();
-  const { data, error, lastUpdateStamp } =
-    useNerdGraphQuery<QueryResponse>(query);
-
-  console.log("data", data);
-
   const { sortedItems, toggleSort, sort } = useSortableItems(items);
 
   return (
@@ -36,24 +20,30 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ data: items }) => {
           className="leaderboard-item__name-units"
           onClick={() => toggleSort("name")}
         >
-          Name & Units{" "}
+          {sortedItems[0].name_heading}{" "}
           {sort.key === "name" && (sort.direction === "asc" ? "▲" : "▼")}
         </div>
         <div
-          className="leaderboard-item__progress"
-          onClick={() => toggleSort("currentValue")}
+          className="leaderboard-item__value"
+          onClick={() => toggleSort("value")}
         >
-          Progress{" "}
-          {sort.key === "currentValue" &&
+          {sortedItems[0].value_heading}{" "}
+          {sort.key === "value" && (sort.direction === "asc" ? "▲" : "▼")}
+        </div>
+        <div
+          className="leaderboard-item__progress"
+          onClick={() => toggleSort("progress_percent")}
+        >
+          {sortedItems[0].progress_percent_heading}{" "}
+          {sort.key === "progress_percent" &&
             (sort.direction === "asc" ? "▲" : "▼")}
         </div>
         <div
           className="leaderboard-item__percentage-change"
-          onClick={() => toggleSort("previousValue")}
+          onClick={() => toggleSort("change")}
         >
-          Change{" "}
-          {sort.key === "previousValue" &&
-            (sort.direction === "asc" ? "▲" : "▼")}
+          {sortedItems[0].change_heading}{" "}
+          {sort.key === "change" && (sort.direction === "asc" ? "▲" : "▼")}
         </div>
       </div>
       <div className="leaderboard-rows">

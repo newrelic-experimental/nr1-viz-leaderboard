@@ -1,63 +1,103 @@
 import React, { useState } from "react";
 import { AutoSizer } from "nr1";
 
+import { useNerdGraphQuery } from "./hooks/nerdGraph/useNerdGraphQuery";
+import { useProps } from "./context/VizPropsProvider";
+
 import { EmptyState } from "./components/EmptyState";
 import { Leaderboard } from "./components/Leaderboard";
 import { LeaderboardItemProps } from "./components/LeaderboardItem";
 
-const initialData: LeaderboardItemProps[] = [
+type QueryResponse = LeaderboardItemProps;
+
+const initialData: Array<QueryResponse> = [
   {
-    imageUrl: "https://picsum.photos/id/1/200",
+    unique_id: 123,
+    image_url: "https://picsum.photos/id/1/200",
     name: "Item 1",
-    units: 100,
-    pricePerUnit: 10,
-    target: 1000,
-    currentValue: 800,
-    previousValue: 700,
+    name_heading: "Name",
+    name_extra_data: "units @ £price_per_unit",
+    value: 200,
+    value_heading: "Value",
+    value_display: "£",
+    progress_percent: 80,
+    progress_percent_heading: "Progress",
+    change: 50,
+    change_heading: "Change",
+    change_display: "%",
   },
   {
-    imageUrl: "https://picsum.photos/id/2/200",
+    unique_id: 456,
+    image_url: "https://picsum.photos/id/2/200",
     name: "Item 2",
-    units: 50,
-    pricePerUnit: 20,
-    target: 800,
-    currentValue: 600,
-    previousValue: 500,
+    name_heading: "Name",
+    name_extra_data: "units @ £price_per_unit",
+    value: 100,
+    value_heading: "Value",
+    value_display: "£",
+    progress_percent: 60,
+    progress_percent_heading: "Progress",
+    change: 100,
+    change_heading: "Change",
+    change_display: "%",
   },
   {
-    imageUrl: "https://picsum.photos/id/3/200",
+    unique_id: 789,
+    image_url: "https://picsum.photos/id/3/200",
     name: "Item 3",
-    units: 200,
-    pricePerUnit: 5,
-    target: 1500,
-    currentValue: 1200,
-    previousValue: 1100,
+    name_heading: "Name",
+    name_extra_data: "units @ £price_per_unit",
+    value: 400,
+    value_heading: "Value",
+    value_display: "£",
+    progress_percent: 20,
+    progress_percent_heading: "Progress",
+    change: 5,
+    change_heading: "Change",
+    change_display: "%",
   },
   {
-    imageUrl: "https://picsum.photos/id/5/200",
+    unique_id: 101112,
+    image_url: "https://picsum.photos/id/5/200",
     name: "Item 5",
-    units: 300,
-    pricePerUnit: 2,
-    target: 1000,
-    currentValue: 400,
-    previousValue: 400,
+    name_heading: "Name",
+    name_extra_data: "units @ £price_per_unit",
+    value: 700,
+    value_heading: "Value",
+    value_display: "£",
+    progress_percent: 78,
+    progress_percent_heading: "Progress",
+    change: 90,
+    change_heading: "Change",
+    change_display: "%",
   },
   {
-    imageUrl: "https://picsum.photos/id/4/200",
+    unique_id: 131415,
+    image_url: "https://picsum.photos/id/4/200",
     name: "Item 4",
-    units: 150,
-    pricePerUnit: 15,
-    target: 2000,
-    currentValue: 200,
-    previousValue: 300,
+    name_heading: "Name",
+    name_extra_data: "units @ £price_per_unit",
+    value: 30,
+    value_heading: "Value",
+    value_display: "£",
+    progress_percent: 14,
+    progress_percent_heading: "Progress",
+    change: 3,
+    change_heading: "Change",
+    change_display: "%",
   },
 ];
 
 export const App = ({ accountId }) => {
-  console.log("accountId", accountId);
   if (!accountId) {
     return <EmptyState />;
   }
+
+  const { query } = useProps();
+  const { data, error, lastUpdateStamp } =
+    useNerdGraphQuery<QueryResponse>(query);
+
+  console.log("data", data[0]);
 
   const [leaderboardData, setLeaderboardData] =
     useState<LeaderboardItemProps[]>(initialData);
@@ -65,7 +105,10 @@ export const App = ({ accountId }) => {
   const shuffleData = () => {
     const shuffledData = [...leaderboardData].map((item, index) => ({
       ...item,
-      currentValue: Math.floor(Math.random() * item.target),
+      position: index,
+      value: Math.floor(Math.random() * 1000),
+      progress_percent: Math.floor(Math.random() * 100),
+      change: Math.floor(Math.random() * 100),
     }));
     setLeaderboardData(shuffledData);
   };

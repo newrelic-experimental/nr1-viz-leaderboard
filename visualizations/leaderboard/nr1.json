@@ -17,16 +17,17 @@
       "type": "nrql"
     },
     {
-      "name": "fill",
-      "title": "Fill color",
-      "description": "A fill color to override the default fill color",
-      "type": "string"
+      "name": "ignorePicker",
+      "title": "Ignore time picker",
+      "description": "Dont adjust the query based on selected time picker",
+      "type": "boolean"
     },
     {
-      "name": "stroke",
-      "title": "Stroke color",
-      "description": "A stroke color to override the default stroke color",
-      "type": "string"
+      "name": "defaultSince",
+      "title": "Default since/until clause",
+      "description": "The since/until to use if no time picker value is chosen",
+      "type": "string",
+      "default": ""
     }
   ]
 }
