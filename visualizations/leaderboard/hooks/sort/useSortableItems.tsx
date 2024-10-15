@@ -9,8 +9,8 @@ export type Sort = {
 
 export const useSortableItems = (items: Array<LeaderboardItemProps>) => {
   const [sort, setSort] = useState<Sort>({
-    key: "currentValue",
-    direction: "desc",
+    key: "unique_id",
+    direction: "asc",
   });
 
   const sortedItems = useMemo(() => {
@@ -41,7 +41,7 @@ export const useSortableItems = (items: Array<LeaderboardItemProps>) => {
     setSort((prevSort) => ({
       key,
       direction:
-        prevSort.key === key && prevSort.direction === "asc" ? "desc" : "asc",
+        prevSort.key === key && prevSort.direction === "desc" ? "asc" : "desc",
     }));
   }, []);
 
