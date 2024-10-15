@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { NerdGraphQuery, PlatformStateContext } from "nr1";
-
 import { nerdGraphQuery } from "./queries";
 import { useProps } from "../../context/VizPropsProvider";
+import { ZodSchema } from "zod";
 
 const FETCH_INTERVAL_DEFAULT = 5; // fetch interval in s - 5 minutes
 
@@ -12,7 +12,10 @@ type QueryResult<T> = {
   lastUpdateStamp: number;
 };
 
-export const useNerdGraphQuery = <T,>(query: string): QueryResult<T> => {
+export const useNerdGraphQuery = <T,>(
+  query: string,
+  responseSchema: ZodSchema<Array<T>>
+): QueryResult<T> => {
   const { timeRange } = useContext(PlatformStateContext);
   const {
     accountId,
@@ -38,8 +41,12 @@ export const useNerdGraphQuery = <T,>(query: string): QueryResult<T> => {
       try {
         const response = await NerdGraphQuery.query({ query: nrql, variables });
         const results = response?.data?.actor?.account?.result?.results;
-        if (results && Array.isArray(results)) {
-          setData(results as Array<T>);
+
+        console.log;
+
+        if (results) {
+          const validatedData = responseSchema.parse(results);
+          setData(validatedData);
           setLastUpdateStamp(Date.now());
         }
       } catch (error) {

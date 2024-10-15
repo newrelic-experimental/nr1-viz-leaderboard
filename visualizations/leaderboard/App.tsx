@@ -6,9 +6,10 @@ import { useProps } from "./context/VizPropsProvider";
 
 import { EmptyState } from "./components/EmptyState";
 import { Leaderboard } from "./components/Leaderboard";
-import { LeaderboardItemProps } from "./components/LeaderboardItem";
+import { LeaderboardSchema } from "./components/Leaderboard";
+import { LeaderboardItemType } from "./components/LeaderboardItem";
 
-type QueryResponse = LeaderboardItemProps;
+type QueryResponse = LeaderboardItemType;
 
 export const App = ({ accountId }) => {
   if (!accountId) {
@@ -16,8 +17,10 @@ export const App = ({ accountId }) => {
   }
 
   const { query } = useProps();
-  const { data, error, lastUpdateStamp } =
-    useNerdGraphQuery<QueryResponse>(query);
+  const { data, error, lastUpdateStamp } = useNerdGraphQuery<QueryResponse>(
+    query,
+    LeaderboardSchema
+  );
 
   // if you compare different perionds in NR Query, we need to filter out the data
   const newData = data.filter((item) =>
