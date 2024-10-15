@@ -62,7 +62,7 @@ export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data }) => {
           {sort.key === "progress_percent" &&
             (sort.direction === "asc" ? "▲" : "▼")}
         </div>
-        {change && (
+        {change !== undefined && (
           <div
             className="leaderboard-item__percentage-change"
             onClick={() => toggleSort("change")}

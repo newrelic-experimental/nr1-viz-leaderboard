@@ -26,7 +26,7 @@ export const useCompare = (
       return currentItem;
     }
 
-    let change: number | undefined = undefined;
+    let change: number = 0;
 
     if (
       typeof currentItem[column] === "number" &&
@@ -37,7 +37,7 @@ export const useCompare = (
 
     return {
       ...currentItem,
-      change: change,
+      change,
     };
   });
 };

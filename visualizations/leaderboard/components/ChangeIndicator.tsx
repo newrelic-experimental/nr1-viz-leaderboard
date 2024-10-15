@@ -3,13 +3,9 @@ import FlipNumbers from "react-flip-numbers";
 import { motion } from "framer-motion";
 
 export const ChangeIndicator: React.FC<{
-  change?: number;
+  change: number;
   changeUnits?: string;
 }> = ({ change, changeUnits }) => {
-  if (!change) {
-    return null;
-  }
-
   return (
     <div className="change-indicator-wrapper">
       <div

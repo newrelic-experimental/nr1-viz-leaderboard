@@ -71,7 +71,7 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
         <ProgressBar percentage={progress_percent} />
       </div>
 
-      {change && (
+      {change !== undefined && (
         <div className="leaderboard-item__percentage-change">
           <ChangeIndicator change={change} changeUnits={change_display} />
         </div>
