@@ -8,6 +8,7 @@ import { EmptyState } from "./components/EmptyState";
 import { Leaderboard } from "./components/Leaderboard";
 import { LeaderboardSchema } from "./components/Leaderboard";
 import { LeaderboardItemType } from "./components/LeaderboardItem";
+import { useCompare } from "./hooks/compare/useCompare";
 
 type QueryResponse = LeaderboardItemType;
 
@@ -22,17 +23,14 @@ export const App = ({ accountId }) => {
     LeaderboardSchema
   );
 
-  // if you compare different perionds in NR Query, we need to filter out the data
-  const newData = data.filter((item) =>
-    item.comparison ? item.comparison === "current" : true
-  );
+  const compared = useCompare(data, "value");
 
   return (
     <AutoSizer>
       {({ width, height }) => {
         return (
           <div style={{ paddingRight: ".25rem", height: "100%" }}>
-            <Leaderboard data={newData} />
+            <Leaderboard data={compared} />
           </div>
         );
       }}
