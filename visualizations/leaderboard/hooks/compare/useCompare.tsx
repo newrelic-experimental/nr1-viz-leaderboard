@@ -1,4 +1,3 @@
-import React from "react";
 import { LeaderboardType } from "../../components/Leaderboard";
 import { LeaderboardItemType } from "../../components/LeaderboardItem";
 
