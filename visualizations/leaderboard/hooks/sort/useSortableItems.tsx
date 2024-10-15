@@ -1,13 +1,13 @@
 import { useMemo, useCallback, useState } from "react";
 
-import { LeaderboardItemProps } from "../../components/LeaderboardItem";
+import { LeaderboardItemType } from "../../components/LeaderboardItem";
 
 export type Sort = {
-  key: keyof LeaderboardItemProps;
+  key: keyof LeaderboardItemType;
   direction: "asc" | "desc";
 };
 
-export const useSortableItems = (items: Array<LeaderboardItemProps>) => {
+export const useSortableItems = (items: Array<LeaderboardItemType>) => {
   const [sort, setSort] = useState<Sort>({
     key: "unique_id",
     direction: "asc",
@@ -37,7 +37,7 @@ export const useSortableItems = (items: Array<LeaderboardItemProps>) => {
     });
   }, [items, sort]);
 
-  const toggleSort = useCallback((key: keyof LeaderboardItemProps) => {
+  const toggleSort = useCallback((key: keyof LeaderboardItemType) => {
     setSort((prevSort) => ({
       key,
       direction:

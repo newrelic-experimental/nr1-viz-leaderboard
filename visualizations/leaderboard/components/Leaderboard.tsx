@@ -1,19 +1,39 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { z } from "zod";
+
 import { useSortableItems } from "../hooks/sort/useSortableItems";
 
-import { LeaderboardItem, LeaderboardItemProps } from "./LeaderboardItem";
+import {
+  LeaderboardItem,
+  LeaderboardItemType,
+  LeaderboardItemSchema,
+} from "./LeaderboardItem";
 
-export type LeaderboardProps = {
-  data: LeaderboardItemProps[] | [];
-};
+export const LeaderboardSchema = z.array(LeaderboardItemSchema);
 
-export const Leaderboard: React.FC<LeaderboardProps> = ({ data }) => {
+export type LeaderboardType = z.infer<typeof LeaderboardSchema>;
+
+const LeaderboardProps = z.object({
+  data: LeaderboardSchema,
+});
+
+type LeaderboardItemProps = z.infer<typeof LeaderboardProps>;
+
+export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data }) => {
   const { sortedItems, toggleSort, sort } = useSortableItems(data);
 
   if (!sortedItems.length) {
     return null;
   }
+
+  const {
+    name_heading,
+    value_heading,
+    progress_percent_heading,
+    change,
+    change_heading,
+  } = sortedItems[0];
 
   return (
     <div className="leaderboard-container">
@@ -24,37 +44,37 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ data }) => {
           className="leaderboard-item__name-units"
           onClick={() => toggleSort("name")}
         >
-          {sortedItems[0].name_heading}{" "}
+          {name_heading}{" "}
           {sort.key === "name" && (sort.direction === "asc" ? "▲" : "▼")}
         </div>
         <div
           className="leaderboard-item__value"
           onClick={() => toggleSort("value")}
         >
-          {sortedItems[0].value_heading}{" "}
+          {value_heading}{" "}
           {sort.key === "value" && (sort.direction === "asc" ? "▲" : "▼")}
         </div>
         <div
           className="leaderboard-item__progress"
           onClick={() => toggleSort("progress_percent")}
         >
-          {sortedItems[0].progress_percent_heading}{" "}
+          {progress_percent_heading}{" "}
           {sort.key === "progress_percent" &&
             (sort.direction === "asc" ? "▲" : "▼")}
         </div>
-        {sortedItems[0].change && (
+        {change && (
           <div
             className="leaderboard-item__percentage-change"
             onClick={() => toggleSort("change")}
           >
-            {sortedItems[0].change_heading}{" "}
+            {change_heading}{" "}
             {sort.key === "change" && (sort.direction === "asc" ? "▲" : "▼")}
           </div>
         )}
       </div>
       <div className="leaderboard-rows">
         <AnimatePresence>
-          {sortedItems.map((item: LeaderboardItemProps, index: number) => (
+          {sortedItems.map((item: LeaderboardItemType, index: number) => (
             <motion.div
               key={item.unique_id}
               layout

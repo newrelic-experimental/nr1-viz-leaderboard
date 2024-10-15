@@ -1,33 +1,31 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { z } from "zod";
+
 import { ProgressBar } from "./ProgressBar";
 import { ChangeIndicator } from "./ChangeIndicator";
 
-export type LeaderboardItemProps = {
-  position?: number; // keep it for default sorting
-  unique_id?: number | string;
+export const LeaderboardItemSchema = z.object({
+  position: z.number().optional(),
+  unique_id: z.union([z.number(), z.string()]),
+  image_url: z.string(),
+  name: z.string(),
+  name_heading: z.string().default("Name").optional(),
+  name_extra_data: z.string().default("").optional(),
+  value: z.number(),
+  value_heading: z.string().default("Value").optional(),
+  value_display: z.string().default("").optional(),
+  progress_percent: z.number(),
+  progress_percent_heading: z.string().default("Progress").optional(),
+  change: z.number().optional(),
+  change_heading: z.string().default("Change").optional(),
+  change_display: z.string().default("").optional(),
+  comparison: z.union([z.literal("current"), z.literal("previous")]).optional(),
+});
 
-  image_url: string;
+export type LeaderboardItemType = z.infer<typeof LeaderboardItemSchema>;
 
-  name: string; // name of an item
-  name_heading: string;
-  name_extra_data: string; // e.g. units @ £price_per_unit
-
-  value: number;
-  value_heading: string;
-  value_display: string;
-
-  progress_percent: number;
-  progress_percent_heading: string;
-
-  change: number; // e.g. 3
-  change_heading: string;
-  change_display: string; // e.g. 3%
-
-  comparison?: "current" | "previous";
-};
-
-export const LeaderboardItem: React.FC<{ item: LeaderboardItemProps }> = ({
+export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
   item,
 }) => {
   const {

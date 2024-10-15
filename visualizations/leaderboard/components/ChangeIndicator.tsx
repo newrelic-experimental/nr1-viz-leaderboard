@@ -3,8 +3,8 @@ import FlipNumbers from "react-flip-numbers";
 import { motion } from "framer-motion";
 
 export const ChangeIndicator: React.FC<{
-  change: number;
-  changeUnits: string;
+  change?: number;
+  changeUnits?: string;
 }> = ({ change, changeUnits }) => {
   if (!change) {
     return null;
