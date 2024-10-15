@@ -14,7 +14,6 @@ type QueryResult<T> = {
 
 export const useNerdGraphQuery = <T,>(query: string): QueryResult<T> => {
   const { timeRange } = useContext(PlatformStateContext);
-  console.log(timeRange);
   const {
     accountId,
     fetchInterval,

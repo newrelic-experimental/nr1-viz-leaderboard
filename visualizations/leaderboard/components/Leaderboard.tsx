@@ -15,8 +15,6 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ data }) => {
     return null;
   }
 
-  console.log("sorted", sortedItems);
-
   return (
     <div className="leaderboard-container">
       <div className="leaderboard-header">
