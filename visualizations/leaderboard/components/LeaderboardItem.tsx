@@ -1,5 +1,5 @@
 import React from "react";
-
+import { motion } from "framer-motion";
 import { ProgressBar } from "./ProgressBar";
 import { ChangeIndicator } from "./ChangeIndicator";
 
@@ -23,6 +23,8 @@ export type LeaderboardItemProps = {
   change: number; // e.g. 3
   change_heading: string;
   change_display: string; // e.g. 3%
+
+  comparison?: "current" | "previous";
 };
 
 export const LeaderboardItem: React.FC<{ item: LeaderboardItemProps }> = ({
@@ -33,7 +35,6 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemProps }> = ({
     image_url,
     name,
     name_extra_data,
-    value,
     value_display,
     progress_percent,
     change,
@@ -56,18 +57,27 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemProps }> = ({
       </div>
 
       <div className="leaderboard-item__value">
-        <span>
-          {value} {value_display}
-        </span>
+        <motion.div
+          key={value_display}
+          initial={{ opacity: 0, y: -5 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.3,
+          }}
+        >
+          {value_display}
+        </motion.div>
       </div>
 
       <div className="leaderboard-item__progress">
         <ProgressBar percentage={progress_percent} />
       </div>
 
-      <div className="leaderboard-item__percentage-change">
-        <ChangeIndicator change={change} changeUnits={change_display} />
-      </div>
+      {change && (
+        <div className="leaderboard-item__percentage-change">
+          <ChangeIndicator change={change} changeUnits={change_display} />
+        </div>
+      )}
     </div>
   );
 };

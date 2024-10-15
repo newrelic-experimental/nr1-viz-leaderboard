@@ -5,11 +5,17 @@ import { useSortableItems } from "../hooks/sort/useSortableItems";
 import { LeaderboardItem, LeaderboardItemProps } from "./LeaderboardItem";
 
 export type LeaderboardProps = {
-  data: LeaderboardItemProps[];
+  data: LeaderboardItemProps[] | [];
 };
 
-export const Leaderboard: React.FC<LeaderboardProps> = ({ data: items }) => {
-  const { sortedItems, toggleSort, sort } = useSortableItems(items);
+export const Leaderboard: React.FC<LeaderboardProps> = ({ data }) => {
+  const { sortedItems, toggleSort, sort } = useSortableItems(data);
+
+  if (!sortedItems.length) {
+    return null;
+  }
+
+  console.log("sorted", sortedItems);
 
   return (
     <div className="leaderboard-container">
@@ -38,19 +44,21 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ data: items }) => {
           {sort.key === "progress_percent" &&
             (sort.direction === "asc" ? "▲" : "▼")}
         </div>
-        <div
-          className="leaderboard-item__percentage-change"
-          onClick={() => toggleSort("change")}
-        >
-          {sortedItems[0].change_heading}{" "}
-          {sort.key === "change" && (sort.direction === "asc" ? "▲" : "▼")}
-        </div>
+        {sortedItems[0].change && (
+          <div
+            className="leaderboard-item__percentage-change"
+            onClick={() => toggleSort("change")}
+          >
+            {sortedItems[0].change_heading}{" "}
+            {sort.key === "change" && (sort.direction === "asc" ? "▲" : "▼")}
+          </div>
+        )}
       </div>
       <div className="leaderboard-rows">
         <AnimatePresence>
           {sortedItems.map((item: LeaderboardItemProps, index: number) => (
             <motion.div
-              key={item.name}
+              key={item.unique_id}
               layout
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}

@@ -6,6 +6,10 @@ export const ChangeIndicator: React.FC<{
   change: number;
   changeUnits: string;
 }> = ({ change, changeUnits }) => {
+  if (!change) {
+    return null;
+  }
+
   return (
     <div className="change-indicator-wrapper">
       <div
