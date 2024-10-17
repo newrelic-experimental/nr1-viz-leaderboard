@@ -1,10 +1,11 @@
 import { useState, useEffect, useContext } from "react";
+import { ZodSchema } from "zod";
 import { NerdGraphQuery, PlatformStateContext } from "nr1";
+
 import { nerdGraphQuery } from "./queries";
 import { useProps } from "../../context/VizPropsProvider";
-import { ZodSchema } from "zod";
 
-const FETCH_INTERVAL_DEFAULT = 5; // fetch interval in s - 5 minutes
+const FETCH_INTERVAL_DEFAULT = 300; // fetch interval in s - 5 minutes
 
 type QueryResult<T> = {
   data: Array<T>;
@@ -41,8 +42,6 @@ export const useNerdGraphQuery = <T,>(
       try {
         const response = await NerdGraphQuery.query({ query: nrql, variables });
         const results = response?.data?.actor?.account?.result?.results;
-
-        console.log;
 
         if (results) {
           const validatedData = responseSchema.parse(results);
