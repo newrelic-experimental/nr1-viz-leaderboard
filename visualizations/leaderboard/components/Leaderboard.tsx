@@ -28,8 +28,10 @@ export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data }) => {
   }
 
   const {
+    image_url,
     name_heading,
     value_heading,
+    progress_percent,
     progress_percent_heading,
     change,
     change_heading,
@@ -39,7 +41,9 @@ export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data }) => {
     <div className="leaderboard-container">
       <div className="leaderboard-header">
         <div className="leaderboard-item__position"></div>
-        <div className="leaderboard-item__image">Image</div>
+        {image_url !== undefined && (
+          <div className="leaderboard-item__image">Image</div>
+        )}
         <div
           className="leaderboard-item__name-units"
           onClick={() => toggleSort("name")}
@@ -54,14 +58,16 @@ export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data }) => {
           {value_heading}{" "}
           {sort.key === "value" && (sort.direction === "asc" ? "▲" : "▼")}
         </div>
-        <div
-          className="leaderboard-item__progress"
-          onClick={() => toggleSort("progress_percent")}
-        >
-          {progress_percent_heading}{" "}
-          {sort.key === "progress_percent" &&
-            (sort.direction === "asc" ? "▲" : "▼")}
-        </div>
+        {progress_percent !== undefined && (
+          <div
+            className="leaderboard-item__progress"
+            onClick={() => toggleSort("progress_percent")}
+          >
+            {progress_percent_heading}{" "}
+            {sort.key === "progress_percent" &&
+              (sort.direction === "asc" ? "▲" : "▼")}
+          </div>
+        )}
         {change !== undefined && (
           <div
             className="leaderboard-item__percentage-change"

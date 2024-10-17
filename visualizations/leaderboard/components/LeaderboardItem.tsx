@@ -8,7 +8,7 @@ import { ChangeIndicator } from "./ChangeIndicator";
 export const LeaderboardItemSchema = z.object({
   position: z.number().optional(),
   unique_id: z.union([z.number(), z.string()]),
-  image_url: z.string(),
+  image_url: z.string().optional(),
   name: z.string(),
   name_heading: z.string().default("Name").optional(),
   name_extra_data: z.string().default("").optional(),
@@ -33,6 +33,7 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
     image_url,
     name,
     name_extra_data,
+    value,
     value_display,
     progress_percent,
     change,
@@ -43,9 +44,11 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
     <div className="leaderboard-item">
       <div className="leaderboard-item__position">{position}</div>
 
-      <div className="leaderboard-item__image">
-        <img src={image_url} alt={name} />
-      </div>
+      {image_url !== undefined && (
+        <div className="leaderboard-item__image">
+          <img src={image_url} alt={name} />
+        </div>
+      )}
 
       <div className="leaderboard-item__name-units">
         <div>
@@ -56,14 +59,14 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
 
       <div className="leaderboard-item__value">
         <motion.div
-          key={value_display}
+          key={value_display ?? value}
           initial={{ opacity: 0, y: -5 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.3,
           }}
         >
-          {value_display}
+          {value_display ?? value}
         </motion.div>
       </div>
 
