@@ -1,4 +1,4 @@
-$color-green: #4c12a1; // #4caf50;
+$color-default: #4c12a1; // #4caf50;
 $color-amber: #ff9800;
 $color-red: #f44336;
 $progress-bar-height: 8px;
@@ -21,7 +21,7 @@ $progress-bar-height: 8px;
 }
 
 .progress-bar__fill--default {
-  background-color: $color-green;
+  background-color: $color-default;
   opacity: 0.3;
 }
 
