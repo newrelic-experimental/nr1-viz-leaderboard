@@ -2,14 +2,12 @@ import React from "react";
 import FlipNumbers from "react-flip-numbers";
 import { motion } from "framer-motion";
 
+// TODO: down arrow not always red
+// needs config option for color
 export const ChangeIndicator: React.FC<{
-  change?: number;
+  change: number;
   changeUnits?: string;
 }> = ({ change, changeUnits }) => {
-  if (!change) {
-    return null;
-  }
-
   return (
     <div className="change-indicator-wrapper">
       <div

@@ -1,10 +1,11 @@
-$color-green: #4caf50;
+$color-default: #4c12a1; // #4caf50;
 $color-amber: #ff9800;
 $color-red: #f44336;
 $progress-bar-height: 8px;
 
 .progress-bar {
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
   height: $progress-bar-height;
   background-color: #e6e6e6;
   border-radius: 20px;
@@ -16,11 +17,12 @@ $progress-bar-height: 8px;
 .progress-bar__fill {
   height: 100%;
   transition: width 0.5s ease;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
-.progress-bar__fill--green {
-  background-color: $color-green;
+.progress-bar__fill--default {
+  background-color: $color-default;
+  opacity: 0.3;
 }
 
 .progress-bar__fill--amber {
@@ -39,4 +41,5 @@ $progress-bar-height: 8px;
   font-size: 0.75rem;
   color: #333;
   font-weight: 600;
+  font-size: 1rem;
 }

@@ -6,6 +6,10 @@ $item-bg-color: #ffffff;
 $item-hover-bg-color: #f5f5f5;
 $shadow-color: rgba(0, 0, 0, 0.05);
 
+$header-font-size: 1.1rem;
+$header-font-weight: bold;
+$header-text-color: #444; // Customize as needed
+
 .leaderboard-container {
   width: 100%;
   margin: 0 auto;
@@ -29,6 +33,12 @@ $shadow-color: rgba(0, 0, 0, 0.05);
     > div {
       padding: 8px;
     }
+  }
+
+  .header {
+    font-size: $header-font-size;
+    color: $header-text-color; // Use a distinct color for the headers if needed
+    font-weight: $header-font-weight;
   }
 
   .leaderboard-rows {

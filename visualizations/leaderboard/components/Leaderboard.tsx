@@ -28,8 +28,10 @@ export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data }) => {
   }
 
   const {
+    image_url,
     name_heading,
     value_heading,
+    progress_percent,
     progress_percent_heading,
     change,
     change_heading,
@@ -39,32 +41,36 @@ export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data }) => {
     <div className="leaderboard-container">
       <div className="leaderboard-header">
         <div className="leaderboard-item__position"></div>
-        <div className="leaderboard-item__image">Image</div>
+        {image_url !== undefined && (
+          <div className="leaderboard-item__image header">Image</div>
+        )}
         <div
-          className="leaderboard-item__name-units"
+          className="leaderboard-item__name-units header"
           onClick={() => toggleSort("name")}
         >
           {name_heading}{" "}
           {sort.key === "name" && (sort.direction === "asc" ? "▲" : "▼")}
         </div>
         <div
-          className="leaderboard-item__value"
+          className="leaderboard-item__value header"
           onClick={() => toggleSort("value")}
         >
           {value_heading}{" "}
           {sort.key === "value" && (sort.direction === "asc" ? "▲" : "▼")}
         </div>
-        <div
-          className="leaderboard-item__progress"
-          onClick={() => toggleSort("progress_percent")}
-        >
-          {progress_percent_heading}{" "}
-          {sort.key === "progress_percent" &&
-            (sort.direction === "asc" ? "▲" : "▼")}
-        </div>
-        {change && (
+        {progress_percent !== undefined && (
           <div
-            className="leaderboard-item__percentage-change"
+            className="leaderboard-item__progress header"
+            onClick={() => toggleSort("progress_percent")}
+          >
+            {progress_percent_heading}{" "}
+            {sort.key === "progress_percent" &&
+              (sort.direction === "asc" ? "▲" : "▼")}
+          </div>
+        )}
+        {change !== undefined && (
+          <div
+            className="leaderboard-item__percentage-change header"
             onClick={() => toggleSort("change")}
           >
             {change_heading}{" "}
