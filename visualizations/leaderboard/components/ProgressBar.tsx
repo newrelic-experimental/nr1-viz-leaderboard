@@ -6,16 +6,19 @@ interface ProgressBarProps {
 }
 
 export const ProgressBar: React.FC<ProgressBarProps> = ({ percentage }) => {
-  let progressBarClass = "progress-bar__fill--green";
+  let progressBarClass = "progress-bar__fill--default";
+
+  /* For now disable the color change based on percentage
   if (percentage < 50) {
     progressBarClass = "progress-bar__fill--amber";
   }
   if (percentage < 25) {
     progressBarClass = "progress-bar__fill--red";
   }
+  */
 
   return (
-    <div className="progress-bar" style={{ height: "15px" }}>
+    <div className="progress-bar" style={{ height: "25px" }}>
       <motion.div
         className={`progress-bar__fill ${progressBarClass}`}
         style={{ height: "100%" }}

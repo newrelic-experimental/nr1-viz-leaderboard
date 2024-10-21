@@ -52,9 +52,9 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
 
       <div className="leaderboard-item__name-units">
         <div>
-          <strong>{name}</strong>
+          <strong className="name">{name}</strong>
         </div>
-        <div>{name_extra_data}</div>
+        <div className="name-extra-data">{name_extra_data}</div>
       </div>
 
       <div className="leaderboard-item__value">
