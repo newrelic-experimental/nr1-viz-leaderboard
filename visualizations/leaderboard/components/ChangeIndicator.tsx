@@ -17,7 +17,7 @@ export const ChangeIndicator: React.FC<{
       >
         <FlipNumbers
           height={15}
-          width={15}
+          width={11}
           color="black"
           background="white"
           play
