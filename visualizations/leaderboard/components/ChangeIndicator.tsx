@@ -22,9 +22,8 @@ export const ChangeIndicator: React.FC<{
           background="white"
           play
           perspective={100}
-          numbers={change.toFixed(2)}
+          numbers={`${change.toFixed(2)}${changeUnits}`}
         />
-        <span>{changeUnits}</span>
         {change > 0 ? (
           <motion.span
             className="arrow-up"
