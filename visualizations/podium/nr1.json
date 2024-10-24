@@ -1,0 +1,63 @@
+{
+    "schemaType": "VISUALIZATION",
+    "id": "podium-viz",
+    "displayName": "Podium",
+    "description": "Displays items in a podium style.",
+    "configuration": [
+        {
+            "name": "accountId",
+            "title": "Account ID",
+            "description": "Account ID to be associated with the query",
+            "type": "account-id"
+        },
+        {
+            "name": "query",
+            "title": "Query",
+            "description": "NRQL query for visualization",
+            "type": "nrql"
+        },
+        {
+            "name": "podiumOrder",
+            "title": "Podium ordering",
+            "description": "Re-order and height adjust the first three places like a podium",
+            "default": true,
+            "type": "boolean"
+        }
+        ,
+        {
+            "name": "podiumColors",
+            "title": "Podium colors",
+            "description": "Change the colours of the first three to gold, silver, bronze",
+            "default": true,
+            "type": "boolean"
+        },
+        {
+            "name": "circular",
+            "title": "Circular display ",
+            "description": "Display in circles",
+            "default": true,
+            "type": "boolean"
+        },
+        {
+            "name": "decorationColor",
+            "title": "Decoration color",
+            "description": "Hex colour value for circles / podium boxes",
+            "default": "",
+            "type": "string"
+        },
+        {
+            "name": "captionColor",
+            "title": "Caption color",
+            "description": "Hex colour value for caption",
+            "default": "",
+            "type": "string"
+        },
+        {
+            "name": "valueColor",
+            "title": "Value color",
+            "description": "Hex colour value for value",
+            "default": "",
+            "type": "string"
+        }
+    ]
+}

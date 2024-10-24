@@ -1,13 +1,10 @@
 {
   "private": true,
   "name": "nr1-viz-leaderboard",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "scripts": {
     "start": "nr1 nerdpack:serve",
     "test": "exit 0"
-  },
-  "nr1": {
-    "uuid": "9d64e77d-2647-4199-a14d-df5cdaadff5f"
   },
   "dependencies": {
     "framer-motion": "^4.1.17",
