@@ -2,7 +2,7 @@
   "schemaType": "VISUALIZATION",
   "id": "leaderboard",
   "displayName": "Leaderboard",
-  "description": "",
+  "description": "Displays data in a leaderboard style.",
   "configuration": [
     {
       "name": "accountId",

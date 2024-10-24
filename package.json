@@ -6,9 +6,6 @@
     "start": "nr1 nerdpack:serve",
     "test": "exit 0"
   },
-  "nr1": {
-    "uuid": "9d64e77d-2647-4199-a14d-df5cdaadff5f"
-  },
   "dependencies": {
     "framer-motion": "^4.1.17",
     "prop-types": "15.7.2",
