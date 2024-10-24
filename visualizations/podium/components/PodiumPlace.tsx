@@ -29,7 +29,8 @@ const PodiumPlace =  ({ placing, caption, value, placingOffset, placingColor, de
 
   let podiumPlace;
   if(circles===true) {
-    podiumPlace=<div fullWidth fullHeight className="podiumPlaceContainer"  >
+    //this doesnt work as a stack item for some reason, the width constrainst go awry.
+    podiumPlace=<div  className="podiumPlaceContainer" >  
                  <PlacingIndicator placing={placing} placingColor={placingColor}/>
                   {imageThumbnailCircle}
                   <div className="podiumContainer">
@@ -50,7 +51,6 @@ const PodiumPlace =  ({ placing, caption, value, placingOffset, placingColor, de
 
               </StackItem>;   
   }
-
   return (
       <>
        {podiumPlace}

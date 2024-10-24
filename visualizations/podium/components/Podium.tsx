@@ -30,16 +30,15 @@ const Podium =  ({ width, height }: AttributesListProps) => {
         item.placingOffset = 3;
       }
 
-      //set the placing colors
+      //set the placing colors gold, silver and bronze
       item.placingColor = "#e2e2e2";
       if(podiumColors === true) {
-        if(index==0) {item.placingColor = "#ddd795";}
-        if(index==1) {item.placingColor = "#c5c4bb";}
-        if(index==2) {item.placingColor = "#c09e7d";}
+        if(index==0) {item.placingColor = "#FFD700";} //#ddd795
+        if(index==1) {item.placingColor = "#d8d8d8";} //#c5c4bb
+        if(index==2) {item.placingColor = "#cd7f32";} //#c09e7d
       }
       return item;
     });
-
 
     if(podiumOrder === true) {
       const firstPlace = podiumData[0];
