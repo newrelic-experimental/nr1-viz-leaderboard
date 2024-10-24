@@ -19,7 +19,7 @@ export const LeaderboardItemSchema = z.object({
   progress_percent_heading: z.string().default("Progress").optional(),
   change: z.number().optional(),
   change_heading: z.string().default("Change").optional(),
-  change_display: z.string().default("").optional(),
+  change_display: z.string().default("%"),
   comparison: z.union([z.literal("current"), z.literal("previous")]).optional(),
 });
 

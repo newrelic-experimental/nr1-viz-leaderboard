@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 // needs config option for color
 export const ChangeIndicator: React.FC<{
   change: number;
-  changeUnits?: string;
+  changeUnits: string;
 }> = ({ change, changeUnits }) => {
   return (
     <div className="change-indicator-wrapper">
