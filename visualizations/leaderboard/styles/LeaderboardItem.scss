@@ -1,11 +1,13 @@
 $position-width: calc(4% - 10px);
-$value-width: calc(25% - 10px);
+$value-width: calc(18% - 10px);
 $progress-width: calc(15% - 10px);
 $image-width: calc(8% - 10px);
-$name-width: calc(18% - 10px);
+$name-width: calc(25% - 10px);
 $item-bg-color: #ffffff;
 $item-hover-bg-color: #f5f5f5;
 $text-color: #333;
+$tooltip-bg-color: #ffffff;
+$tooltip-border-color: #c4c4c4;
 
 .leaderboard-item {
   display: flex;
@@ -48,9 +50,37 @@ $text-color: #333;
     text-align: left;
     flex-grow: 2;
     color: $text-color;
+    overflow: hidden;
 
     .name {
       font-size: 1.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      display: block;
+      cursor: pointer;
+
+      &::after {
+        content: attr(data-full-name);
+        position: absolute;
+        top: -1.5rem;
+        left: 0;
+        background: $tooltip-bg-color;
+        padding: 2px 4px;
+        border: 1px solid $tooltip-border-color;
+        border-radius: 5px;
+        color: $text-color;
+        white-space: nowrap;
+        z-index: 100;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.5s ease;
+      }
+
+      &:hover::after {
+        opacity: 1;
+      }
     }
 
     .name-extra-data {

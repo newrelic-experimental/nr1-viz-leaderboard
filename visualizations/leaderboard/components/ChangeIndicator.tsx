@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 // needs config option for color
 export const ChangeIndicator: React.FC<{
   change: number;
-  changeUnits?: string;
+  changeUnits: string;
 }> = ({ change, changeUnits }) => {
   return (
     <div className="change-indicator-wrapper">
@@ -17,14 +17,13 @@ export const ChangeIndicator: React.FC<{
       >
         <FlipNumbers
           height={15}
-          width={15}
+          width={11}
           color="black"
           background="white"
           play
           perspective={100}
-          numbers={change.toFixed(2)}
+          numbers={`${change.toFixed(2)}${changeUnits}`}
         />
-        <span>{changeUnits}</span>
         {change > 0 ? (
           <motion.span
             className="arrow-up"

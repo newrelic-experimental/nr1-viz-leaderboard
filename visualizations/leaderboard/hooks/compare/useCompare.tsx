@@ -31,8 +31,9 @@ export const useCompare = (
       typeof currentItem[column] === "number" &&
       typeof previousItem[column] === "number"
     ) {
-      // TODO: config option to show change as percentage
-      change = currentItem[column] - previousItem[column];
+      change =
+        ((currentItem[column] - previousItem[column]) / previousItem[column]) *
+        100;
     }
 
     return {
