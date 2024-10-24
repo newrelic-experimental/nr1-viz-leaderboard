@@ -58,6 +58,25 @@
             "description": "Hex colour value for value",
             "default": "",
             "type": "string"
+        },
+        {
+            "name": "refreshInterval",
+            "title": "Refresh interval",
+            "description": "For auto refresh of data, in seconds",
+            "type": "number"
+        },
+        {
+            "name": "ignorePicker",
+            "title": "Ignore time picker",
+            "description": "Dont adjust the query based on selected time picker",
+            "type": "boolean"
+        },
+        {
+            "name": "defaultSince",
+            "title": "Default since/until clause",
+            "description": "The since/until to use if no time picker value is chosen",
+            "type": "string",
+            "default": ""
         }
     ]
 }

@@ -13,8 +13,8 @@ type AttributesListProps = {
 
 const Podium =  ({ width, height }: AttributesListProps) => {
   const vizProps = useProps();
-  const { accountId, query, podiumOrder, podiumColors, circular,decorationColor, captionColor, valueColor } = vizProps;
-  const { data } = useNerdGraphQuery(accountId, query);
+  const { accountId, query, podiumOrder, podiumColors, circular,decorationColor, captionColor, valueColor, refreshInterval, ignorePicker, defaultSince  } = vizProps;
+  const { data } = useNerdGraphQuery(accountId, query, ignorePicker, refreshInterval, defaultSince);
  
 
   const PodiumDisplay: JSX.Element[] = [];
