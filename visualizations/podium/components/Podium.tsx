@@ -13,7 +13,7 @@ type AttributesListProps = {
 
 const Podium =  ({ width, height }: AttributesListProps) => {
   const vizProps = useProps();
-  const { accountId, query, podiumOrder, podiumColors, circular,decorationColor, captionColor, valueColor, refreshInterval, ignorePicker, defaultSince  } = vizProps;
+  const { accountId, query, podiumOrder, podiumColors, circular,decorationColor, captionColor, subCaptionColor, valueColor, refreshInterval, ignorePicker, defaultSince  } = vizProps;
   const { data } = useNerdGraphQuery(accountId, query, ignorePicker, refreshInterval, defaultSince);
  
 
@@ -49,11 +49,14 @@ const Podium =  ({ width, height }: AttributesListProps) => {
       PodiumDisplay.push(<PodiumPlace 
         placing={item.placing} 
         caption={item.caption} 
+        subCaption={item.subCaption}
+        link={item.link}
         value={item.valueDisplay ? item.valueDisplay : item.value} 
         placingOffset={item.placingOffset} 
         placingColor={item.placingColor} 
         decorationColor={decorationColor && decorationColor!="" ? decorationColor : item.placingColor}
         captionColor={captionColor && captionColor!="" ? captionColor : null}
+        subCaptionColor={subCaptionColor && subCaptionColor!="" ? subCaptionColor : null}
         valueColor={valueColor && valueColor!="" ? valueColor : null}
         imageUrl={item.imageUrl} 
         circles={circular}/>);

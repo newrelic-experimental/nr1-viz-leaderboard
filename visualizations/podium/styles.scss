@@ -26,6 +26,9 @@
     width: 30em;
     padding: 0.5em 1em 0 1em;
 }
+.cursorPointer {
+    cursor: pointer;
+}
 
 
 
@@ -66,6 +69,11 @@ div.placingIndicator {
   div.podiumName {
     font-size: 1.5em;
     font-weight: bold;
+    padding-top:0.2em;
+  }
+
+  div.podiumSubName {
+    font-size: 1em;
     padding-top:0.2em;
   }
 

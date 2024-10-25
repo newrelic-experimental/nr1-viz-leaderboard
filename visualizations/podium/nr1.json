@@ -53,6 +53,13 @@
             "type": "string"
         },
         {
+            "name": "subCaptionColor",
+            "title": "Sub Caption color",
+            "description": "Hex colour value for sub caption",
+            "default": "",
+            "type": "string"
+        },
+        {
             "name": "valueColor",
             "title": "Value color",
             "description": "Hex colour value for value",
