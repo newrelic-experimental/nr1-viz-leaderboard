@@ -5,6 +5,7 @@ import { z } from "zod";
 import { ProgressBar } from "./ProgressBar";
 import { ChangeIndicator } from "./ChangeIndicator";
 import { NameUnits } from "./NameUnits";
+import { Position } from "./Position";
 
 export const LeaderboardItemSchema = z.object({
   position: z.number().optional(),
@@ -45,7 +46,9 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
 
   return (
     <div className="leaderboard-item">
-      <div className="leaderboard-item__position">{position}</div>
+      <div className="leaderboard-item__position">
+        <Position position={position} />
+      </div>
 
       {image_url !== undefined && (
         <div className="leaderboard-item__image">

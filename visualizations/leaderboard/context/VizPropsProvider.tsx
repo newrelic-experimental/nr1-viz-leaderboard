@@ -1,7 +1,12 @@
 import React, { createContext, useContext, ReactNode } from "react";
 
 // This has to be updated to match the keys in your config - for ts to give you type hints
-type ConfigKeys = "accountId" | "query" | "ignorePicker" | "defaultSince";
+type ConfigKeys =
+  | "accountId"
+  | "query"
+  | "ignorePicker"
+  | "defaultSince"
+  | "fetchInterval";
 
 type VizProps = {
   [key in ConfigKeys]: any;
