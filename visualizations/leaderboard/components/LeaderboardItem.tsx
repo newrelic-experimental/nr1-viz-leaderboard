@@ -4,21 +4,24 @@ import { z } from "zod";
 
 import { ProgressBar } from "./ProgressBar";
 import { ChangeIndicator } from "./ChangeIndicator";
+import { NameUnits } from "./NameUnits";
+import { Position } from "./Position";
 
 export const LeaderboardItemSchema = z.object({
   position: z.number().optional(),
   unique_id: z.union([z.number(), z.string()]),
   image_url: z.string().optional(),
   name: z.string(),
-  name_heading: z.string().default("Name").optional(),
-  name_extra_data: z.string().default("").optional(),
+  name_heading: z.string().optional().default("Name"),
+  name_extra_data: z.string().optional().default(""),
+  link: z.string().optional().default(""),
   value: z.number(),
-  value_heading: z.string().default("Value").optional(),
+  value_heading: z.string().optional().default("Value"),
   value_display: z.string().default("").optional(),
-  progress_percent: z.number(),
-  progress_percent_heading: z.string().default("Progress").optional(),
+  progress_percent: z.number().optional(),
+  progress_percent_heading: z.string().optional().default("Progress"),
   change: z.number().optional(),
-  change_heading: z.string().default("Change").optional(),
+  change_heading: z.string().optional().default("Change"),
   change_display: z.string().default("%"),
   comparison: z.union([z.literal("current"), z.literal("previous")]).optional(),
 });
@@ -32,6 +35,7 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
     position,
     image_url,
     name,
+    link,
     name_extra_data,
     value,
     value_display,
@@ -42,7 +46,9 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
 
   return (
     <div className="leaderboard-item">
-      <div className="leaderboard-item__position">{position}</div>
+      <div className="leaderboard-item__position">
+        <Position position={position} />
+      </div>
 
       {image_url !== undefined && (
         <div className="leaderboard-item__image">
@@ -51,12 +57,7 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
       )}
 
       <div className="leaderboard-item__name-units">
-        <div>
-          <strong className="name" data-full-name={name}>
-            {name}
-          </strong>
-        </div>
-        <div className="name-extra-data">{name_extra_data}</div>
+        <NameUnits name={name} link={link} name_extra_data={name_extra_data} />
       </div>
 
       <div className="leaderboard-item__value">
@@ -72,9 +73,11 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
         </motion.div>
       </div>
 
-      <div className="leaderboard-item__progress">
-        <ProgressBar percentage={progress_percent} />
-      </div>
+      {progress_percent !== undefined && (
+        <div className="leaderboard-item__progress">
+          <ProgressBar percentage={progress_percent} />
+        </div>
+      )}
 
       {change !== undefined && (
         <div className="leaderboard-item__percentage-change">
