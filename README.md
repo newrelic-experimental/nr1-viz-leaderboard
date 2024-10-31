@@ -1,6 +1,8 @@
 # Leaderboard Visualization
 
-Leaderboard Visualization is a dynamic and animated web app that allows you to visualize the ranking of the top 10 values from your dataset. It displays the position, values ranked, optional image, percentage of the total (configurable), and the change in the last x hours.
+Leaderboard Visualization is a dynamic and animated web app that allows you to visualize the ranking of the top X values from your dataset. It displays the position, values ranked, optional image, percentage of the total (configurable), and the change in the last x hours.
+
+<img width="1278" alt="leaderboard" src="https://github.com/user-attachments/assets/a6afab84-cc63-444c-9e65-9f3df7721f95">
 
 ## Features
 
@@ -13,6 +15,8 @@ All of the features are configurable and can be controlled by the user through t
 - **Value**: Configurable column for the value of the row with value derived from the dataset. Column name is configurable.
 - **Percentage of total**: You can choose to display the percentage of the total value for each row. Derived from the dataset. Column name is configurable.
 - **Change in the last x hours**: You can choose to display the change in the last x hours for each row. Derived from the dataset. Column name is configurable.
+
+You can watch a quick vide demo of the visualization [here](https://github.com/user-attachments/assets/9b40b3b4-6a7d-416b-8f12-8ecf7cf2034f)
 
 ## Configuration of the Visualization
 
