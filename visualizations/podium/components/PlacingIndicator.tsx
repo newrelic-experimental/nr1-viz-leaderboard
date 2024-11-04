@@ -1,5 +1,5 @@
 import React from "react";
-import { Position } from "../../leaderboard/components/Position";
+import { Position } from "../../../shared_components/Position/Position";
 import { useProps } from "../context/VizPropsProvider";
 
 type AttributesListProps = {
