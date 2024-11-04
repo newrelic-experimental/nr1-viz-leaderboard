@@ -28,6 +28,12 @@
       "description": "The since/until to use if no time picker value is chosen",
       "type": "string",
       "default": ""
+    },
+    {
+      "name": "fetchInterval",
+      "title": "Fetch interval (s)",
+      "description": "Zero for no refresh",
+      "type": "number"
     }
   ]
 }

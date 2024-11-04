@@ -21,19 +21,18 @@ export const useCompare = (
   return currentItems.map((currentItem) => {
     const previousItem = previousItemsMap.get(currentItem.unique_id);
 
-    if (!previousItem) {
-      return currentItem;
-    }
+    let change: number = 100; // Default to 100% for new items with no previous value
 
-    let change: number = 0;
-
-    if (
-      typeof currentItem[column] === "number" &&
-      typeof previousItem[column] === "number"
-    ) {
-      change =
-        ((currentItem[column] - previousItem[column]) / previousItem[column]) *
-        100;
+    if (previousItem) {
+      if (
+        typeof currentItem[column] === "number" &&
+        typeof previousItem[column] === "number"
+      ) {
+        change =
+          ((currentItem[column] - previousItem[column]) /
+            previousItem[column]) *
+          100;
+      }
     }
 
     return {

@@ -1,0 +1,29 @@
+$gold-color: #ae9512;
+$silver-color: #92908f;
+$bronze-color: #93664e;
+
+.medal-icon {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  vertical-align: middle;
+  display: inline-block;
+  margin-top: 2px;
+  border-radius: 50%;
+  padding: 5px;
+
+  &.gold {
+    box-shadow: 0 0 10px 5px
+      rgba(red($gold-color), green($gold-color), blue($gold-color), 0.6);
+  }
+
+  &.silver {
+    box-shadow: 0 0 10px 5px
+      rgba(red($silver-color), green($silver-color), blue($silver-color), 0.6);
+  }
+
+  &.bronze {
+    box-shadow: 0 0 10px 5px
+      rgba(red($bronze-color), green($bronze-color), blue($bronze-color), 0.6);
+  }
+}
