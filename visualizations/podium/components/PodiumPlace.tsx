@@ -2,6 +2,7 @@ import React from "react";
 import { StackItem } from 'nr1'
 import PlacingIndicator from './PlacingIndicator';
 
+
 type AttributesListProps = {
     placing: any;
     caption: any;

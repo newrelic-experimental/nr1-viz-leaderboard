@@ -1,3 +1,5 @@
+@import "../leaderboard/styles/Position.scss";
+
 .EmptyState,
 .ErrorState {
     height: 100%;
@@ -31,19 +33,33 @@
 }
 
 
+div.placingIndicatorRosette {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  min-width: 3em;
+  vertical-align: middle;
+  // padding-top:1em;
+}
+
+div.placingIndicatorRosette > .medal-icon {
+  width: 60px; 
+  height: 60px;
+}
 
 div.placingIndicator {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: #066a35;
     color: #000000;
-    min-width: 3em;
+    // min-width: 3em;
     border-radius: 50%;
     vertical-align: middle;
     padding:1em;
     font-weight:bold;
-    box-shadow:0 0 0 6px;
+    width: 50px; 
+    height: 50px;
   }
   div.placingIndicator span.placingNumber {
     font-size:2em;

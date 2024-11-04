@@ -32,6 +32,12 @@
             "type": "boolean"
         },
         {
+            "name": "hideRosette",
+            "title": "Hide rosettes",
+            "description": "Hide the rosette icons",
+            "type": "boolean"
+        },
+        {
             "name": "circular",
             "title": "Circular display ",
             "description": "Display in circles",
