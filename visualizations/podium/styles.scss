@@ -1,3 +1,5 @@
+@import "../../shared_components/Position/Position.scss";
+
 .EmptyState,
 .ErrorState {
     height: 100%;
@@ -31,19 +33,31 @@
 }
 
 
+div.placingIndicatorRosette {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  min-width: 3em;
+  vertical-align: middle;
+}
+
+div.placingIndicatorRosette > .medal-icon {
+  width: 60px; 
+  height: 60px;
+}
 
 div.placingIndicator {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: #066a35;
     color: #000000;
-    min-width: 3em;
     border-radius: 50%;
     vertical-align: middle;
     padding:1em;
     font-weight:bold;
-    box-shadow:0 0 0 6px;
+    width: 50px; 
+    height: 50px;
   }
   div.placingIndicator span.placingNumber {
     font-size:2em;
@@ -86,11 +100,6 @@ div.placingIndicator {
     margin:auto;
   }
 
-
-  div.podiumBlock, div.podiumContainer {
-    // background-color: #e2e2e2;
-  }
-
   div.podiumContainer {
     padding-bottom:1em;
   }
@@ -112,12 +121,6 @@ div.placingIndicator {
     border: solid 10px grey;
     box-shadow: 0px 0px 3px 3px #dedede;
   }
-
-// .innerPodiumPlaceContainer {
-//   border: solid rgb(21, 0, 255) 1px;
-//   width: 30em;
-//   padding: 0 1em 0 1em;
-// }
 
 .autoSizer {
   justify-content: center;

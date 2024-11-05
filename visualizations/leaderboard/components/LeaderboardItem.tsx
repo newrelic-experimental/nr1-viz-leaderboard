@@ -5,7 +5,7 @@ import { z } from "zod";
 import { ProgressBar } from "./ProgressBar";
 import { ChangeIndicator } from "./ChangeIndicator";
 import { NameUnits } from "./NameUnits";
-import { Position } from "./Position";
+import { Position } from "../../../shared_components/Position/Position";
 
 export const LeaderboardItemSchema = z.object({
   position: z.number().optional(),

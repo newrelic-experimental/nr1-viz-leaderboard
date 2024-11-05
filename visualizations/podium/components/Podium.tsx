@@ -31,7 +31,7 @@ const Podium =  ({ width, height }: AttributesListProps) => {
       }
 
       //set the placing colors gold, silver and bronze
-      item.placingColor = "#e2e2e2";
+      item.placingColor = "#c2c2c2";
       if(podiumColors === true) {
         if(index==0) {item.placingColor = "#FFD700";} //#ddd795
         if(index==1) {item.placingColor = "#d8d8d8";} //#c5c4bb
