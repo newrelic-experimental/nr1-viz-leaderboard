@@ -21,6 +21,7 @@ All of the features are configurable and can be controlled by the user through t
 ### Configuration options
 
 - `Account ID` & `Query`: The query to dereive dat for table. See below for details.
+- `Ignore time picker`: Changes to the time picker will not affect the query. Required if using compare.
 - `Fetch interval`: Number of seconds between automatic re-hydration of the data in the table.
 
 ### Data query
