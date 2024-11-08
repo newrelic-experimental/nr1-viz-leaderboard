@@ -24,10 +24,9 @@ const PodiumPlace =  ({ placing, value, caption, subCaption, placingOffset, link
 
   let imageThumbnail, imageThumbnailCircle;
   if(imageUrl && imageUrl!="")  {
-    imageThumbnail=<div className="imageThumb"><img src={imageUrl} alt="name"/></div>
+    imageThumbnail=<div className="imageThumb"><ImageWithFallback src={imageUrl} alt={name} /></div>
     imageThumbnailCircle=<div className="imageThumb">
       <ImageWithFallback src={imageUrl} alt={name} className="circle" style={{borderColor: decorationColor}}  />
-      {/* <img className="circle" style={{borderColor: decorationColor}} src={imageUrl} alt="name"/> */}
     </div>
   }
 
