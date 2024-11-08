@@ -1,4 +1,4 @@
-# Retail LEaderboard & Podium Visualizations
+# Retail Leaderboard & Podium Visualizations
 
 This pack includes two visualizations for displaying business data in leaderboard/podium style. They can be used for displaying any data type but are particularly suited for retail business data.
 
