@@ -42,8 +42,8 @@ div.placingIndicatorRosette {
 }
 
 div.placingIndicatorRosette > .medal-icon {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
 }
 
 div.placingIndicator {
@@ -111,11 +111,13 @@ div.imageThumb {
 }
 
 div.imageThumb img {
-  height: 11em;
+  height: 9em;
+   width: 9em;
 }
 
 div.imageThumb img.circle {
-  height: 11em;
+  height: 9em;
+  width: 10em;
   border-radius: 50%;
   border: solid 10px grey;
   box-shadow: 0px 0px 3px 3px #dedede;

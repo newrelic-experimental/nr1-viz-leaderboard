@@ -1,7 +1,7 @@
 import React from "react";
 import { StackItem } from 'nr1'
 import PlacingIndicator from './PlacingIndicator';
-
+import { ImageWithFallback } from "../../../shared/ImageWithFallBack/ImageWithFallback";
 
 type AttributesListProps = {
     placing: any;
