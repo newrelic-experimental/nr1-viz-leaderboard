@@ -55,7 +55,7 @@ latest('Throughput') AS value_heading,
 latest(appName) AS unique_id,
 latest(appName) AS name,
 latest('Application') AS name_heading,
-latest(concat(string(duration, precision:5),' avg duration')) AS extra_data,
+latest(concat(string(duration, precision:5),' avg duration')) AS name_extra_data,
 
 latest((throughput/1000) * 100 ) AS progress_percent,
 latest('Target') AS progress_percent_heading,
