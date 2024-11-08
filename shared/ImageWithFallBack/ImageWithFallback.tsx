@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import placeholderImage from "../../../assets/placeholder.png";
+import placeholderImage from "../../assets/placeholder.png";
 
 type ImageWithFallbackProps = {
   src: string;
