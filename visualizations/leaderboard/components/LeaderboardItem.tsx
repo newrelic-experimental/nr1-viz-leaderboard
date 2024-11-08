@@ -22,7 +22,7 @@ export const LeaderboardItemSchema = z.object({
   value_display: z
     .union([z.string(), z.number()])
     .optional()
-    .transform((val) => (val === undefined ? "" : String(val))),
+    .transform((val) => (val !== undefined ? String(val) : undefined)),
   progress_percent: z.number().optional(),
   progress_percent_heading: z.string().optional().default("Progress"),
   change: z.number().optional(),
