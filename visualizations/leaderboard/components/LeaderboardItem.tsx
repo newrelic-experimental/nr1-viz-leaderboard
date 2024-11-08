@@ -5,19 +5,24 @@ import { z } from "zod";
 import { ProgressBar } from "./ProgressBar";
 import { ChangeIndicator } from "./ChangeIndicator";
 import { NameUnits } from "./NameUnits";
-import { Position } from "../../../shared_components/Position/Position";
+import { Position } from "../../../shared/Position/Position";
+import { ImageWithFallback } from "./ImageWithFallback";
 
 export const LeaderboardItemSchema = z.object({
   position: z.number().optional(),
   unique_id: z.union([z.number(), z.string()]),
   image_url: z.string().optional(),
   name: z.string(),
+  full_name: z.string().optional(),
   name_heading: z.string().optional().default("Name"),
   name_extra_data: z.string().optional().default(""),
   link: z.string().optional().default(""),
   value: z.number(),
   value_heading: z.string().optional().default("Value"),
-  value_display: z.string().default("").optional(),
+  value_display: z
+    .union([z.string(), z.number()])
+    .optional()
+    .transform((val) => (val === undefined ? "" : String(val))),
   progress_percent: z.number().optional(),
   progress_percent_heading: z.string().optional().default("Progress"),
   change: z.number().optional(),
@@ -35,6 +40,7 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
     position,
     image_url,
     name,
+    full_name,
     link,
     name_extra_data,
     value,
@@ -52,12 +58,17 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
 
       {image_url !== undefined && (
         <div className="leaderboard-item__image">
-          <img src={image_url} alt={name} />
+          <ImageWithFallback src={image_url} alt={name} />
         </div>
       )}
 
       <div className="leaderboard-item__name-units">
-        <NameUnits name={name} link={link} name_extra_data={name_extra_data} />
+        <NameUnits
+          name={name}
+          link={link}
+          name_extra_data={name_extra_data}
+          full_name={full_name}
+        />
       </div>
 
       <div className="leaderboard-item__value">
