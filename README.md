@@ -2,18 +2,18 @@
 
 This pack includes two visualizations for displaying business data in leaderboard/podium style. They can be used for displaying any data type but are particularly suited for retail business data.
 
-### [Leaderboard Visualization](visualizations/leaderboard/README.md)
+## [Leaderboard Visualization](visualizations/leaderboard/README.md)
 ![Leaderboard](docs/screen-leaderboard.png)
 Leaderboard Visualization is a dynamic and animated web app that allows you to visualize the ranking of the top X values from your dataset. It displays the position, values ranked, optional image, percentage of the total (configurable), and the change in the last x hours.
 
 [Leaderboard visualization configuration instructions here](visualizations/leaderboard/README.md)
 
-### [Podium Visualization](visualizations/podium/README.md)
+## [Podium Visualization](visualizations/podium/README.md)
 ![Podium](docs/screen-podium2.png)
 ![Podium Circles](docs/screen-podium.png)
 The podium visualization allows you to highlight top values from your data set in a podium style view. Display is customizable.
 
-[Podium visulization configuration instructions here]((visualizations/podium/README.md))
+[Podium visualization configuration instructions here]((visualizations/podium/README.md))
 
 
 > Data in screen shots is simulated!

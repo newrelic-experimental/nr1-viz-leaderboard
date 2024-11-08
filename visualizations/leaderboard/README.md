@@ -61,7 +61,8 @@ latest(concat(string(duration, precision:5),' avg duration')) AS name_extra_data
 latest((throughput/1000) * 100 ) AS progress_percent,
 latest('Target') AS progress_percent_heading,
 
-latest(concat('https://your-image-repo/',appName,'.jpg')) AS image_url
+latest(concat('https://your-image-repo/',appName,'.jpg')) AS image_url,
+latest(concat('https://your-url-target/',appName)) AS link
 
 FROM (
  FROM Transaction 
