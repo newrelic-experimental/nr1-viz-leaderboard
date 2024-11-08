@@ -26,6 +26,7 @@ The query should return the following columns:
 
 - `unique_id`: A unique identifier for each row. Required
 - `name`: The name of an item in the row. Required
+- `full_name`: The full name of the item in the row. Optional (is show on item hover - might be useful for long names)
 - `name_heading`: The name of the column for the name. Optional (default: `Name`)
 - `name_extra_data`: Any extra data to be displayed in the name column. Optional
 - `value`: The value of the item in the row - preferably a number but can be a string. Required

@@ -5,7 +5,7 @@ import { NerdGraphQuery, PlatformStateContext } from "nr1";
 import { nerdGraphQuery } from "./queries";
 import { useProps } from "../../context/VizPropsProvider";
 
-const FETCH_INTERVAL_DEFAULT = 5; // fetch interval in s - 5 minutes
+const FETCH_INTERVAL_DEFAULT = 60; // fetch interval in s - 1 min
 
 type QueryResult<T> = {
   data: Array<T>;
@@ -20,7 +20,7 @@ export const useNerdGraphQuery = <T,>(
   const { timeRange } = useContext(PlatformStateContext);
   const {
     accountId,
-    fetchInterval,
+    fetchInterval = FETCH_INTERVAL_DEFAULT,
     ignorePicker = false,
     defaultSince = "",
   } = useProps();

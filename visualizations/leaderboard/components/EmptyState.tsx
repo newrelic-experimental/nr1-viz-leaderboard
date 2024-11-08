@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardBody,
-  HeadingText,
-  CardSection,
-  CardSectionBody,
-  CardSectionHeader,
-  List,
-  ListItem,
-} from "nr1";
+import { Card, CardBody, HeadingText } from "nr1";
 
 export const EmptyState: React.FC = () => (
   <Card className="EmptyState">
@@ -17,31 +8,20 @@ export const EmptyState: React.FC = () => (
         spacingType={[HeadingText.SPACING_TYPE.LARGE]}
         type={HeadingText.TYPE.HEADING_3}
       >
-        Please provide NRQL query that returns data in the correct format.
+        No data available.
       </HeadingText>
-      <CardSection className="EmptyState-cardSection">
-        <CardSectionHeader>
-          <HeadingText type={HeadingText.TYPE.HEADING_4}>
-            The query should include the columns (as required):
-          </HeadingText>
-        </CardSectionHeader>
-        <CardSectionBody>
-          <List fullWidth={true} rowHeight={20}>
-            <ListItem>
-              • <code className="inline">example prop</code> - description of
-              example prop
-            </ListItem>
-          </List>
-        </CardSectionBody>
-      </CardSection>
-      <CardSection className="EmptyState-cardSection">
-        <CardSectionHeader>
-          <HeadingText type={HeadingText.TYPE.HEADING_4}>Example:</HeadingText>
-        </CardSectionHeader>
-        <CardSectionBody>
-          <code>FROM ... SELECT ...</code>
-        </CardSectionBody>
-      </CardSection>
+      <p>
+        Please refer to the{" "}
+        <a
+          href="https://github.com/newrelic-experimental/nr1-viz-leaderboard"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="repo-link"
+        >
+          GitHub repository
+        </a>{" "}
+        for setup instructions and more information.
+      </p>
     </CardBody>
   </Card>
 );
