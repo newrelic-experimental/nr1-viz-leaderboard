@@ -18,7 +18,7 @@ type QueryResult<T> = {
 
 export const useNerdGraphQuery = <T,>(
   query: string,
-  responseSchema: ZodSchema<Array<T>>
+  responseSchema: ZodSchema<Array<T>>,
 ): QueryResult<T> => {
   const { timeRange } = useContext(PlatformStateContext);
   const {

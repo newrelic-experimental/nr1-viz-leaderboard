@@ -13,12 +13,12 @@ const ExampleViz = (props) => {
               <VizPropsProvider {...props}>
                 <Viz
                   platformState={platformContextState}
-                  // platformState 
+                  // platformState
                   nerdletState={nerdletContextState}
                   // props from config
                   {...props}
                 />
-            </VizPropsProvider>
+              </VizPropsProvider>
             )}
           </NerdletStateContext.Consumer>
         )}

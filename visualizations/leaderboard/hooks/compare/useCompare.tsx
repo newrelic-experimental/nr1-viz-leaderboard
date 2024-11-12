@@ -3,7 +3,7 @@ import { LeaderboardItemType } from "../../components/LeaderboardItem";
 
 export const useCompare = (
   data: LeaderboardType,
-  column: keyof LeaderboardItemType
+  column: keyof LeaderboardItemType,
 ): Array<LeaderboardItemType> => {
   const hasComparison = data.some((item) => item.comparison !== undefined);
 
@@ -15,7 +15,7 @@ export const useCompare = (
   const previousItems = data.filter((item) => item.comparison === "previous");
 
   const previousItemsMap = new Map(
-    previousItems.map((item) => [item.unique_id, item])
+    previousItems.map((item) => [item.unique_id, item]),
   );
 
   return currentItems.map((currentItem) => {

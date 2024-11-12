@@ -5,6 +5,7 @@
 The podium visualization allows you to highlight top values from your data set in a podium style view. Display is customizable.
 
 ## Configuration Options
+
 The following configuration options are provided via the visualization configuration window. Most are optional.
 
 - `Account Id` & `Query`: The data query to hydrate the visualization. See below for details. Required.
@@ -14,7 +15,7 @@ The following configuration options are provided via the visualization configura
 - `Circular display`: If toggeled on will show the items in a circle rather thna on podium blocks.
 - `Decoration color`: Color for blocks/circles. Overrides podium colouring. CSS Hex color.
 - `Caption color`: Text colour for the caption. CSS Hex color.
-- `Sub Caption color`:  Text colour for the sub caption. CSS Hex color.
+- `Sub Caption color`: Text colour for the sub caption. CSS Hex color.
 - `Value color`: Text colour for the value display. CSS Hex color.
 - `Refresh interval`: Number of seconds between auto refresh. Default 1 minute.
 - `Ignore time picker`: If toggled on changes to the dashboardtime picker will be ignored.
@@ -35,19 +36,19 @@ The query should provide data in the specified columns. The value column should 
 This example query uses event type Transaction to demonstrate how you might query the required data. Note the `LIMIT 3` on the inner query limiting the output to three items.
 
 ```
-SELECT 
+SELECT
 
 latest(throughput) AS value,
 latest(concat(string(throughput, precision:2),' rpm')) AS valueDisplay,
 
-latest(appName) AS caption, 
+latest(appName) AS caption,
 latest(concat(string(duration, precision:5),' avg duration')) AS subCaption,
 
 latest(concat('https://your-url-target/',appName)) AS link
 
 FROM (
- FROM Transaction 
- SELECT 
+ FROM Transaction
+ SELECT
  rate(count(*), 1 minute) AS throughput,
  average(duration) AS duration,
  latest(appId) AS appId

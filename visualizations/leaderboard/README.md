@@ -15,7 +15,6 @@ All of the features are configurable and can be controlled by the user through t
 - **Percentage of total**: You can choose to display the percentage of the total value for each row. Derived from the dataset. Column name is configurable.
 - **Change in the last x hours**: You can choose to display the change in the last x hours for each row. Derived from the dataset. Column name is configurable.
 
-
 ## Configuration of the Visualization
 
 ### Configuration options
@@ -47,7 +46,7 @@ The majority of the configuration is provided via an NRQL query, The query shoul
 Below is an example query that can be used to display a leaderboard using service telemetry from the Transaction event type. We use nested aggregation to allow for string manipulation.
 
 ```sql
-SELECT 
+SELECT
 
 latest(throughput) AS value,
 latest(concat(string(throughput, precision:2),' rpm')) AS value_display,
@@ -65,8 +64,8 @@ latest(concat('https://your-image-repo/',appName,'.jpg')) AS image_url,
 latest(concat('https://your-url-target/',appName)) AS link
 
 FROM (
- FROM Transaction 
- SELECT 
+ FROM Transaction
+ SELECT
  rate(count(*), 1 minute) AS throughput,
  average(duration) AS duration,
  latest(appId) AS appId

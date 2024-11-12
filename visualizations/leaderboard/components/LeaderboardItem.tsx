@@ -6,7 +6,7 @@ import { ProgressBar } from "./ProgressBar";
 import { ChangeIndicator } from "./ChangeIndicator";
 import { NameUnits } from "./NameUnits";
 import { Position } from "../../../shared/Position/Position";
-import { ImageWithFallback } from "../../../shared/ImageWithFallBack/ImageWithFallback";
+import { ImageWithFallback } from "../../../shared/ImageWithFallBack";
 
 export const LeaderboardItemSchema = z.object({
   position: z.number().optional(),

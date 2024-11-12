@@ -5,7 +5,13 @@ import { nerdGraphQuery } from "./utils/queries";
 
 const FETCH_INTERVAL_DEFAULT = 300; // fetch interval in s - 5 minutes
 
-export const useNerdGraphQuery = ( accountId: string, query: string, ignorePicker : boolean = false , fetchInterval: number = FETCH_INTERVAL_DEFAULT, defaultSince: string = "") => {
+export const useNerdGraphQuery = (
+  accountId: string,
+  query: string,
+  ignorePicker: boolean = false,
+  fetchInterval: number = FETCH_INTERVAL_DEFAULT,
+  defaultSince: string = "",
+) => {
   const { timeRange } = useContext(PlatformStateContext);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);

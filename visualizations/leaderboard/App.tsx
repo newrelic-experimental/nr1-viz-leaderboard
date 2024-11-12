@@ -21,7 +21,7 @@ export const App = ({ accountId }) => {
   const { query } = useProps();
   const { data, error, lastUpdateStamp } = useNerdGraphQuery<QueryResponse>(
     query,
-    LeaderboardSchema
+    LeaderboardSchema,
   );
 
   if (error) {

@@ -24,7 +24,7 @@ const gqlQuery = (query, timeRange, defaultSince, ignorePicker) => {
     query,
     timeRange,
     defaultSince,
-    ignorePicker
+    ignorePicker,
   )}" ) { results }`;
 };
 
@@ -32,7 +32,7 @@ export const nerdGraphQuery = (
   query,
   timeRange,
   defaultSince,
-  ignorePicker
+  ignorePicker,
 ) => {
   return `
   query($id: Int!) {
