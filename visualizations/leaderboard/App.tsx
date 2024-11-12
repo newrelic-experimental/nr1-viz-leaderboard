@@ -9,6 +9,7 @@ import { Leaderboard } from "./components/Leaderboard";
 import { LeaderboardSchema } from "./components/Leaderboard";
 import { LeaderboardItemType } from "./components/LeaderboardItem";
 import { useCompare } from "./hooks/compare/useCompare";
+import { ErrorState } from "./components/ErrorState";
 
 type QueryResponse = LeaderboardItemType;
 
@@ -20,8 +21,12 @@ export const App = ({ accountId }) => {
   const { query } = useProps();
   const { data, error, lastUpdateStamp } = useNerdGraphQuery<QueryResponse>(
     query,
-    LeaderboardSchema
+    LeaderboardSchema,
   );
+
+  if (error) {
+    return <ErrorState errorMessage={error} />;
+  }
 
   const compared = useCompare(data, "value");
 

@@ -7,13 +7,13 @@ $color-neutral: #888;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 1.2rem;
   color: #000;
 
   .arrow-up,
   .arrow-down,
   .no-change {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    padding-top: 0.4rem;
   }
 
   .arrow-up {

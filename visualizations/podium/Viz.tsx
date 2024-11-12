@@ -5,7 +5,7 @@ import EmptyState from "./components/EmptyState";
 import Podium from "./components/Podium";
 
 const Viz = ({ accountId }) => {
-  // return empty state if no config  
+  // return empty state if no config
   if (!accountId) {
     return <EmptyState />;
   }
@@ -13,9 +13,7 @@ const Viz = ({ accountId }) => {
   return (
     <AutoSizer className="autoSizer">
       {({ width, height }) => {
-        return (
-          <Podium width={width} height={height}/>
-        );
+        return <Podium width={width} height={height} />;
       }}
     </AutoSizer>
   );

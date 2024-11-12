@@ -1,8 +1,8 @@
 import React from "react";
 
-import goldMedalIcon from "../assets/gold-medal.svg";
-import silverMedalIcon from "../assets/silver-medal.svg";
-import bronzeMedalIcon from "../assets/bronze-medal.svg";
+import goldMedalIcon from "../../assets/gold-medal.svg";
+import silverMedalIcon from "../../assets/silver-medal.svg";
+import bronzeMedalIcon from "../../assets/bronze-medal.svg";
 
 export const Position: React.FC<{ position?: number }> = ({ position }) => {
   switch (position) {

@@ -2,9 +2,10 @@ import React from "react";
 
 export const NameUnits: React.FC<{
   name: string;
+  full_name?: string;
   link: string;
   name_extra_data: string;
-}> = ({ name, link, name_extra_data }) => {
+}> = ({ name, full_name, link, name_extra_data }) => {
   const isValidLink = (url: string) => {
     try {
       new URL(url);
@@ -19,7 +20,7 @@ export const NameUnits: React.FC<{
       <div>
         <strong
           className="name"
-          data-full-name={name}
+          data-full-name={full_name ?? name}
           onClick={() => {
             if (link && isValidLink(link)) {
               window.open(link, "_blank");

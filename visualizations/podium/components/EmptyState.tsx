@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardBody,
-  HeadingText
-} from "nr1";
+import { Card, CardBody, HeadingText } from "nr1";
 
 const EmptyState: React.FC = () => (
   <Card className="EmptyState">
