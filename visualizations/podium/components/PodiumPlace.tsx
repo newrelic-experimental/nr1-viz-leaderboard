@@ -40,14 +40,14 @@ const PodiumPlace = ({
   if (imageUrl && imageUrl != "") {
     imageThumbnail = (
       <div className="imageThumb">
-        <ImageWithFallback src={imageUrl} alt={name} />
+        <ImageWithFallback src={imageUrl} alt="image" />
       </div>
     );
     imageThumbnailCircle = (
       <div className="imageThumb">
         <ImageWithFallback
           src={imageUrl}
-          alt={name}
+          alt="image"
           className="circle"
           style={{ borderColor: decorationColor }}
         />
