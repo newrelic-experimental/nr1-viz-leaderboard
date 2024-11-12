@@ -1,9 +1,12 @@
 import React from "react";
 import FlipNumbers from "react-flip-numbers";
 import { motion } from "framer-motion";
+import {
+  TbArrowBigUpFilled,
+  TbArrowBigDownFilled,
+  TbMinus,
+} from "react-icons/tb";
 
-// TODO: down arrow not always red
-// needs config option for color
 export const ChangeIndicator: React.FC<{
   change: number;
   changeUnits: string;
@@ -31,7 +34,7 @@ export const ChangeIndicator: React.FC<{
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            ⬆
+            <TbArrowBigUpFilled />
           </motion.span>
         ) : change < 0 ? (
           <motion.span
@@ -40,10 +43,12 @@ export const ChangeIndicator: React.FC<{
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            ⬇
+            <TbArrowBigDownFilled />
           </motion.span>
         ) : (
-          <span className="no-change">–</span>
+          <span className="no-change">
+            <TbMinus />
+          </span>
         )}
       </div>
     </div>
