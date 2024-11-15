@@ -49,7 +49,7 @@ const Thermometer = ({ width, height }: AttributesListProps) => {
                 stepFormat={stepFormat}
                 valueFormat={valueFormat}
                 size={sizeStyle}
-                height={height}
+                height={height-30}
                 decorationColor={decorationColor}
               />
         </>
