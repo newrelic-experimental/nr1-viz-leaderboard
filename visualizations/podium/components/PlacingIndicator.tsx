@@ -1,6 +1,6 @@
 import React from "react";
 import { Position } from "../../../shared/Position/Position";
-import { useProps } from "../context/VizPropsProvider";
+import { useProps } from "../../../shared/context/VizPropsProvider/VizPropsProvider";  
 
 type AttributesListProps = {
   placing: number;

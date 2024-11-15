@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { PlatformStateContext, NerdletStateContext } from "nr1";
-import { VizPropsProvider } from "./context/VizPropsProvider";
+import { VizPropsProvider } from "../../shared/context/VizPropsProvider/VizPropsProvider";
 import Viz from "./Viz";
 
 const ExampleViz = (props) => {
