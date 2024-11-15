@@ -1,6 +1,6 @@
 import React from "react";
 import { useProps } from "../context/VizPropsProvider";
-import { useNerdGraphQuery } from "../hooks/useNerdGraphQuery";
+import { useNerdGraphQuery } from "../../../shared/hooks/useNerdGraphQuery/useNerdGraphQuery";
 import PodiumPlace from "./PodiumPlace";
 import { Stack } from "nr1";
 
