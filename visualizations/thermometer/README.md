@@ -8,7 +8,7 @@ The thermometer gauge visualization allows you to plot a single value against a 
 The following configuration options are provided via the visualization configuration window. Most are optional.
 
 - `Account Id` & `Query`: The data query to hydrate the visualization. See below for details. Required.
-- `Color gradient`: A comma seperated list of CSS hex values defining the gradient stop colors used. From top to bottom.
+- `Color gradient`: A comma seperated list of CSS hex values defining the gradient stop colors used. From bottom to top.
 - `Number of steps`: The number of progress indicator steps to include on the chart.
 - `Format pattern for step label`/`for current value`/`for target value`: A replacement string pattern for the steps, current and target values. The special value `[[value]]` will be replaced with the actual numeric value. `\n` will be interpreted as a line break. e.g. `$[[[value]] sales`
 - `Decimal places`: The number of decimal places to display values with.
