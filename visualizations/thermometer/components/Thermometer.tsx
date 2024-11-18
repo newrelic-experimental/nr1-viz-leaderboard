@@ -38,7 +38,6 @@ const Thermometer = ({ width, height }: AttributesListProps) => {
     return (
         <>
           <ThermometerGauge
-                theme="light"
                 value={currentData.value > currentData.target ? currentData.target : currentData.value}
                 decimalPlaces={decimalPlaces}
                 max={currentData.target}

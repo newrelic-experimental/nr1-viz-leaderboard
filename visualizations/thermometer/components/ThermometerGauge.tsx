@@ -3,12 +3,9 @@
 
 import React, { Component } from 'react'
 
-// import './Thermometer.css'
-
 class Thermometer extends Component {
   render() {
     this.options = this._generateOptions();
-    const theme = `thermometer--theme-${this.options.theme()}`;
     const size = `thermometer--${this.options.size()}`;
     const height = { height: `${this.options.height-30}px` };
     const heightPercent = { height: `${this.options.percent()}%` };
@@ -20,7 +17,7 @@ class Thermometer extends Component {
 
 
     return (
-      <div style={height} className={`thermometer ${size} ${theme}`}>
+      <div style={height} className={`thermometer ${size} thermometer--theme-light`}>
         <div className="thermometer__draw-a"></div>
         <div className={`thermometer__draw-b`} >
           <div className="bulb" style={{backgroundColor: this.options.baseColor()}}></div>
@@ -41,10 +38,7 @@ class Thermometer extends Component {
 
   _generateOptions() {
 
-
-
     return {
-      theme: () => this.props.theme === 'light' || this.props.theme === 'dark' ? this.props.theme : 'light',
       value: this.props.value || 0, //default 0
       valueFormat: this.props.valueFormat,
       decimalPlaces: this.props.decimalPlaces || 0, 
@@ -53,8 +47,8 @@ class Thermometer extends Component {
       targetFormat: this.props.targetFormat,
       steps: this.props.steps,
       stepFormat: this.props.stepFormat,
-      gradient: this.props.gradient || "#2196F3,#8BC34A,#f44336", 
-      baseColor: () => this.options.gradient.split(',')[this.options.gradient.split(',').length-1],
+      gradient: this.props.gradient ?  this.props.gradient.split(',').reverse().join(',') : "#44ff44,#ff2222", 
+      baseColor: () => this.options.gradient.split(',').reverse()[0],
       decorationColor: this.props.decorationColor || "#000",
       size: () => this.props.size === 'small' || this.props.size === 'normal' || this.props.size === 'large' || this.props.size === 'xlarge' ? this.props.size : 'normal',
       height: this.props.height || 200, //default 200
