@@ -1,62 +1,50 @@
-# Podium Visualization
+# Thermometer Gauge Visualization
 
-![Podium](../../docs/screen-podium2.png)
-![Podium Circles](../../docs/screen-podium.png)
-The podium visualization allows you to highlight top values from your data set in a podium style view. Display is customizable.
+![Podium](../../docs/thermometer.png)
+The thermometer gauge visualization allows you to plot a single value against a target with a thermometer / totalizer style visualisation. 
 
 ## Configuration Options
 
 The following configuration options are provided via the visualization configuration window. Most are optional.
 
 - `Account Id` & `Query`: The data query to hydrate the visualization. See below for details. Required.
-- `Podium Ordering`: If toggled on then the 1st place is shown in between second and third, like on a podium!
-- `Podium Colors`: If toggled on the colours gold, silver and bronze will be used.
-- `Hide Rosettes`: If toggled on will replace the rosettes with simple circles.
-- `Circular display`: If toggeled on will show the items in a circle rather thna on podium blocks.
-- `Decoration color`: Color for blocks/circles. Overrides podium colouring. CSS Hex color.
-- `Caption color`: Text colour for the caption. CSS Hex color.
-- `Sub Caption color`: Text colour for the sub caption. CSS Hex color.
-- `Value color`: Text colour for the value display. CSS Hex color.
-- `Refresh interval`: Number of seconds between auto refresh. Default 1 minute.
-- `Ignore time picker`: If toggled on changes to the dashboardtime picker will be ignored.
-- `Default since/until calues`: Used to provide the default since/until for when default is selected in the time picker.
+- `Color gradient`: A comma seperated list of CSS hex values defining the gradient stop colors used. From top to bottom.
+- `Number of steps`: The number of progress indicator steps to include on the chart.
+- `Format pattern for step label`/`for current value`/`for target value`: A replacement string pattern for the steps, current and target values. The special value `[[value]]` will be replaced with the actual numeric value. `\n` will be interpreted as a line break. e.g. `$[[[value]] sales`
+- `Decimal places`: The number of decimal places to display values with.
+- `Decoration color`: Allows you ste change color of the current value and target labels  with a CSS hex color.
+- `Size style`: Allows you to adjust the size of the gauge.
+- `Refresh interval`: Number of seconds until data is auto-refreshed.
+- `Ignore time picker`: Ignores the dashboard time picker
+- `Default since/until`: Provide since/until caluse here instead of in query to allow visualisation to work with the time picker in dashboards.
 
 ## Data Query
 
-The query should provide data in the specified columns. The value column should be selected first as this infers the ordering:
+The query should provide a single row result with data in the specified columns. 
 
-- `value`: The value. Required (to infer ordering).
-- `valueDisplay`: Value to display, may be text and allows for decoration. `Value` will be used if omitted. Optional.
-- `caption`: The caption to display. Required.
-- `subCaption`: The value to display beneath the caption. Optional.
-- `link`: Link to navigate to if clicked. Optional.
+- `value`: The current value value.
+- `target`: The target value.
+- `startValue`: Optional start value, if omitted chart starts at zero.
+
+> Avoid including a SINCE/UNTIL in your query, instead supply this via the configuration option to ensure better compatibility with the dashboard time picker. 
+
 
 ### Example Query
 
-This example query uses event type Transaction to demonstrate how you might query the required data. Note the `LIMIT 3` on the inner query limiting the output to three items.
+Here are some example queries, they are very straight forward:
 
+A toy example that value will change every second 0-60:
 ```
-SELECT
+FROM Transaction 
+select latest(toDatetime(timestamp, 'ss')) as value, 
+60 as target, 
+0 as startValue
+```
 
-latest(throughput) AS value,
-latest(concat(string(throughput, precision:2),' rpm')) AS valueDisplay,
-
-latest(appName) AS caption,
-latest(concat(string(duration, precision:5),' avg duration')) AS subCaption,
-
-latest(concat('https://your-url-target/',appName)) AS link
-
-FROM (
- FROM Transaction
- SELECT
- rate(count(*), 1 minute) AS throughput,
- average(duration) AS duration,
- latest(appId) AS appId
- FACET appName AS appName
- LIMIT 3
-)
-
-FACET appName
-LIMIT max
-SINCE 1 HOUR AGO
+An example using transaction data:
+```
+FROM Transaction 
+select count(*) as value, 
+1000000 as target, 
+0 as startValue
 ```

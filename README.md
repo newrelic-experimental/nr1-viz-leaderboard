@@ -1,6 +1,6 @@
-# Retail Leaderboard & Podium Visualizations
+# Retail Leaderboard, Podium Thermometer Visualizations
 
-This pack includes two visualizations for displaying business data in leaderboard/podium style. They can be used for displaying any data type but are particularly suited for retail business data.
+This pack includes a collection of visualizations for displaying business data in a leadernpard, podium or thermometer style view. They can be used for displaying any data type via configurable NRQL queries.
 
 ## [Leaderboard Visualization](visualizations/leaderboard/README.md)
 
@@ -18,6 +18,12 @@ The podium visualization allows you to highlight top values from your data set i
 [Podium visualization configuration instructions here](<(visualizations/podium/README.md)>)
 
 > Data in screen shots is simulated!
+
+## [Thermometer Gauge Vizualisation](visualizations/thermometer/README.md)
+![Podium](docs/thermometer.png)
+The thermometer gauge visualization allows you to plot a single value against a target with a thermometer / totalizer style visualisation. 
+
+[Thermometer visualization configuration instructions here](<(visualizations/thermometer/README.md)>)
 
 ## Installation
 

@@ -30,7 +30,7 @@
     },
     {
       "name": "stepFormat",
-      "title": "Format pattern fo step label",
+      "title": "Format pattern for step label",
       "description": "Provide a pattern, e.g. '$[[value]] sales' ",
       "type": "string"
     },
