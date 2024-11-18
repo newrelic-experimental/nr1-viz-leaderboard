@@ -54,11 +54,7 @@ class Thermometer extends Component {
       steps: this.props.steps,
       stepFormat: this.props.stepFormat,
       gradient: this.props.gradient || "#2196F3,#8BC34A,#f44336", 
-      baseColor: () => {
-        const baseColor = this.options.gradient.split(',')[this.options.gradient.split(',').length-1];
-        console.log("baseCOlor",baseColor,this.options.gradient);
-        return baseColor;
-      },
+      baseColor: () => this.options.gradient.split(',')[this.options.gradient.split(',').length-1],
       decorationColor: this.props.decorationColor || "#000",
       size: () => this.props.size === 'small' || this.props.size === 'normal' || this.props.size === 'large' || this.props.size === 'xlarge' ? this.props.size : 'normal',
       height: this.props.height || 200, //default 200
