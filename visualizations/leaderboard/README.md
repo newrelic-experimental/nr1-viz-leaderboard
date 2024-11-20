@@ -22,6 +22,7 @@ All of the features are configurable and can be controlled by the user through t
 - `Account ID` & `Query`: The query to dereive dat for table. See below for details.
 - `Ignore time picker`: Changes to the time picker will not affect the query. Required if using compare.
 - `Fetch interval`: Number of seconds between automatic re-hydration of the data in the table.
+- `Default since/until`: Provide since/until caluse here instead of in query to allow visualisation to work with the time picker in dashboards.
 
 ### Data query
 
@@ -40,6 +41,8 @@ The majority of the configuration is provided via an NRQL query, The query shoul
 - Comparison: The change in the last x hours. Can be set using NRQL query's `compare with x hour` clause. If present triggers change column to appear. Optional.
 - `change_heading`: The heading text for the change column. Optional (default: `Change`)
 - `link`: Link to navigate to if item is clicked. Optional.
+
+> Avoid including a SINCE/UNTIL in your query, instead supply this via the configuration option to ensure better compatibility with the dashboard time picker. 
 
 #### Example query
 

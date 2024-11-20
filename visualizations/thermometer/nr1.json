@@ -1,0 +1,95 @@
+{
+  "schemaType": "VISUALIZATION",
+  "id": "thermometer-viz",
+  "displayName": "Thermometer Gauge",
+  "description": "Displays target attainment in termometer gauges style",
+  "configuration": [
+    {
+      "name": "accountId",
+      "title": "Account ID",
+      "description": "Account ID to be associated with the query",
+      "type": "account-id"
+    },
+    {
+      "name": "query",
+      "title": "Query",
+      "description": "NRQL query for visualization",
+      "type": "nrql"
+    },
+    {
+      "name": "colorGradient",
+      "title": "Color gradient",
+      "description": "CSS hex colors for mercury gradient",
+      "type": "string"
+    },
+    {
+      "name": "steps",
+      "title": "Number of steps",
+      "description": "The number of stops to display alongside the gauge",
+      "type": "number"
+    },
+    {
+      "name": "stepFormat",
+      "title": "Format pattern for step label",
+      "description": "Provide a pattern, e.g. '$[[value]] sales' ",
+      "type": "string"
+    },
+    {
+      "name": "valueFormat",
+      "title": "Format for current value",
+      "description": "Provide a pattern, e.g. '$[[value]] so far!' ",
+      "type": "string"
+    },
+    {
+      "name": "targetFormat",
+      "title": "Format for target label",
+      "description": "Format for target label.",
+      "type": "string"
+    },
+    {
+      "name": "decimalPlaces",
+      "title": "Decimal places",
+      "description": "Round value to specified decimal places",
+      "default": 0,
+      "type": "number"
+    },
+    {
+      "name": "decorationColor",
+      "title": "Decoration color",
+      "description": "CSS hex colour for target and current value",
+      "type": "string"
+    },
+    {
+      "name": "sizeStyle",
+      "title": "Size style",
+      "description": "Controls the size and shape of the visual ",
+      "type": "enum",
+      "default": "normal",
+      "items": [
+        {"value": "small", "title": "Small"},
+        {"value": "normal", "title": "Medium"},
+        {"value": "large", "title": "Large"},
+        {"value": "xlarge", "title": "X Large"}
+      ]
+    },
+    {
+      "name": "refreshInterval",
+      "title": "Refresh interval",
+      "description": "For auto refresh of data, in seconds",
+      "type": "number"
+    },
+    {
+      "name": "ignorePicker",
+      "title": "Ignore time picker",
+      "description": "Dont adjust the query based on selected time picker",
+      "type": "boolean"
+    },
+    {
+      "name": "defaultSince",
+      "title": "Default since/until clause",
+      "description": "The since/until to use if no time picker value is chosen",
+      "type": "string",
+      "default": ""
+    }
+  ]
+}

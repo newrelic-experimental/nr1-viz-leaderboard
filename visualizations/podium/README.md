@@ -19,7 +19,7 @@ The following configuration options are provided via the visualization configura
 - `Value color`: Text colour for the value display. CSS Hex color.
 - `Refresh interval`: Number of seconds between auto refresh. Default 1 minute.
 - `Ignore time picker`: If toggled on changes to the dashboardtime picker will be ignored.
-- `Default since/until calues`: Used to provide the default since/until for when default is selected in the time picker.
+- `Default since/until calues`: Provide since/until caluse here instead of in query to allow visualisation to work with the time picker in dashboards.
 
 ## Data Query
 
@@ -30,6 +30,8 @@ The query should provide data in the specified columns. The value column should 
 - `caption`: The caption to display. Required.
 - `subCaption`: The value to display beneath the caption. Optional.
 - `link`: Link to navigate to if clicked. Optional.
+
+> Avoid including a SINCE/UNTIL in your query, instead supply this via the configuration option to ensure better compatibility with the dashboard time picker. 
 
 ### Example Query
 
