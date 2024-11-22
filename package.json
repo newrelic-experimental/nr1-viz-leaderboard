@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "nr1-viz-leaderboard",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "scripts": {
     "start": "nr1 nerdpack:serve",
     "test": "exit 0"
