@@ -4,6 +4,11 @@
 @import "./styles/ChangeIndicator.scss";
 @import "../../shared/Position/Position.scss";
 
+@media (prefers-color-scheme: dark) {
+img {
+    filter: invert(1)  hue-rotate(180deg) contrast(1);
+  }
+}
 // ErrorState.tsx and EmptyState.tsx
 .EmptyState,
 .ErrorState {
