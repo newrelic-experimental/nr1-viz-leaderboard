@@ -34,12 +34,14 @@ $tooltip-border-color: #c4c4c4;
 
   &__image {
     width: $image-width;
+
     text-align: center;
     flex-grow: 1;
 
     img {
       max-width: 80%;
       height: auto;
+      max-height:5em;
       border-radius: 8px;
     }
   }
