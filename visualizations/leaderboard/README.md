@@ -12,6 +12,7 @@ All of the features are configurable and can be controlled by the user through t
 - **Sort order**: You can choose to sort the leaderboard in ascending or descending order by clicking on the column name. Default ordering is based on the first `SELECT` value in the query.
 - **Name**: Configurable column for the name of the row with value derived from the dataset. Column name is configurable.
 - **Value**: Configurable column for the value of the row with value derived from the dataset. Column name is configurable.
+- **Additional columns**: Up to two additional columns can be added between the Value and Progress columns. Fully configurable via NRQL with custom headers and sortable functionality.
 - **Percentage of total**: You can choose to display the percentage of the total value for each row. Derived from the dataset. Column name is configurable.
 - **Change in the last x hours**: You can choose to display the change in the last x hours for each row. Derived from the dataset. Column name is configurable.
 
@@ -36,11 +37,27 @@ The majority of the configuration is provided via an NRQL query, The query shoul
 - `value`: The value of the item in the row - preferably a number but can be a string. Used for initial sorting. Required.
 - `value_display`: The value to be displayed in the value column. Allows for text decoration without affecting ordering. Optional.
 - `value_heading`: The heading text for value column. Optional (default: `Value`)
+- `additional_column_1`: The value for the first additional column. Supports both string and numeric values. Optional.
+- `additional_column_1_heading`: The heading text for the first additional column. Optional (default: `Additional 1`)
+- `additional_column_2`: The value for the second additional column. Supports both string and numeric values. Optional.
+- `additional_column_2_heading`: The heading text for the second additional column. Optional (default: `Additional 2`)
 - `progress_percent`: The percentage for the progress column. Can be set using NRQL query based on `value`. Optional
 - `progress_percent_heading`: The heading text for the progress column. Optional (default: `Progress`)
 - Comparison: The change in the last x hours. Can be set using NRQL query's `compare with x hour` clause. If present triggers change column to appear. Optional.
 - `change_heading`: The heading text for the change column. Optional (default: `Change`)
 - `link`: Link to navigate to if item is clicked. Optional.
+
+#### Column Order
+
+The columns appear in the following order:
+1. Position (auto-generated)
+2. Image (if `image_url` provided)
+3. Name
+4. Value
+5. **Additional Column 1** (if `additional_column_1` provided)
+6. **Additional Column 2** (if `additional_column_2` provided)
+7. Progress/Target (if `progress_percent` provided)
+8. Change (if comparison data available)
 
 > Avoid including a SINCE/UNTIL in your query, instead supply this via the configuration option to ensure better compatibility with the dashboard time picker. 
 
@@ -60,6 +77,11 @@ latest(appName) AS name,
 latest('Application') AS name_heading,
 latest(concat(string(duration, precision:5),' avg duration')) AS name_extra_data,
 
+latest(errorRate) AS additional_column_1,
+latest('Error Rate') AS additional_column_1_heading,
+latest(apdex) AS additional_column_2,
+latest('Apdex') AS additional_column_2_heading,
+
 latest((throughput/1000) * 100 ) AS progress_percent,
 latest('Target') AS progress_percent_heading,
 
@@ -71,6 +93,8 @@ FROM (
  SELECT
  rate(count(*), 1 minute) AS throughput,
  average(duration) AS duration,
+ percentage(count(*), WHERE error IS true) AS errorRate,
+ apdex(duration, t:0.5) AS apdex,
  latest(appId) AS appId
  FACET appName AS appName
  LIMIT 10
@@ -81,3 +105,39 @@ LIMIT max
 SINCE 1 HOUR AGO
 COMPARE WITH 1 HOUR AGO
 ```
+
+#### Additional Examples
+
+**Sales Leaderboard with Deal Metrics:**
+```sql
+SELECT 
+  salesRep as name,
+  totalSales as value,
+  dealCount as additional_column_1,
+  'Deals' as additional_column_1_heading,
+  avgDealSize as additional_column_2,
+  'Avg Deal Size' as additional_column_2_heading,
+  (dealCount / target) * 100 as progress_percent,
+  'Target Progress' as progress_percent_heading
+FROM SalesData
+```
+
+**Customer Leaderboard with Order Information:**
+```sql
+SELECT 
+  customerName as name,
+  totalSpend as value,
+  orderCount as additional_column_1,
+  'Orders' as additional_column_1_heading,
+  avgOrderValue as additional_column_2,
+  'Avg Order' as additional_column_2_heading
+FROM CustomerData
+```
+
+#### Technical Notes
+
+- **Backward Compatible**: Existing leaderboards continue to work unchanged - additional columns only appear when data is provided
+- **Sorting**: All additional columns are fully sortable by clicking the column headers
+- **Data Types**: Additional columns support both string and numeric values, automatically converted to strings for display
+- **Responsive Design**: Column widths automatically adjust to accommodate additional columns
+- **NRQL Control**: Everything is controlled via NRQL queries - no configuration panel setup required

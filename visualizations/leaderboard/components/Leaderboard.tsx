@@ -35,6 +35,10 @@ export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data }) => {
     progress_percent_heading,
     change,
     change_heading,
+    additional_column_1,
+    additional_column_1_heading,
+    additional_column_2,
+    additional_column_2_heading,
   } = sortedItems[0];
 
   return (
@@ -58,6 +62,24 @@ export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data }) => {
           {value_heading}{" "}
           {sort.key === "value" && (sort.direction === "asc" ? "▲" : "▼")}
         </div>
+        {additional_column_1 !== undefined && (
+          <div
+            className="leaderboard-item__additional-column-1 header"
+            onClick={() => toggleSort("additional_column_1")}
+          >
+            {additional_column_1_heading}{" "}
+            {sort.key === "additional_column_1" && (sort.direction === "asc" ? "▲" : "▼")}
+          </div>
+        )}
+        {additional_column_2 !== undefined && (
+          <div
+            className="leaderboard-item__additional-column-2 header"
+            onClick={() => toggleSort("additional_column_2")}
+          >
+            {additional_column_2_heading}{" "}
+            {sort.key === "additional_column_2" && (sort.direction === "asc" ? "▲" : "▼")}
+          </div>
+        )}
         {progress_percent !== undefined && (
           <div
             className="leaderboard-item__progress header"
