@@ -86,10 +86,9 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
       <div className="leaderboard-item__value">
         <motion.div
           key={value_display ?? value}
-          initial={{ opacity: 0, y: -5 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 0.3,
+            duration: 0.1,
           }}
         >
           {value_display ?? value}
@@ -100,10 +99,9 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
         <div className="leaderboard-item__additional-column-1">
           <motion.div
             key={additional_column_1}
-            initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 0.3,
+              duration: 0.1,
             }}
           >
             {additional_column_1}
@@ -115,10 +113,9 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
         <div className="leaderboard-item__additional-column-2">
           <motion.div
             key={additional_column_2}
-            initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 0.3,
+              duration: 0.1,
             }}
           >
             {additional_column_2}

@@ -106,10 +106,9 @@ export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data }) => {
             <motion.div
               key={item.unique_id}
               layout
-              initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 1.5 }}
+              transition={{ duration: 0.3 }}
             >
               <LeaderboardItem item={{ ...item, position: index + 1 }} />
             </motion.div>
