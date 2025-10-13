@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { z } from "zod";
 
@@ -18,10 +18,13 @@ const LeaderboardProps = z.object({
   data: LeaderboardSchema,
 });
 
-type LeaderboardItemProps = z.infer<typeof LeaderboardProps>;
+type LeaderboardItemProps = z.infer<typeof LeaderboardProps> & {
+  renderStartTime: number;
+};
 
-export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data }) => {
+export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data, renderStartTime }) => {
   const { sortedItems, toggleSort, sort } = useSortableItems(data);
+  const hasLoggedInitialRender = useRef(false);
 
   if (!sortedItems.length) {
     return null;
@@ -40,6 +43,12 @@ export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data }) => {
     additional_column_2,
     additional_column_2_heading,
   } = sortedItems[0];
+
+  // Log render completion time only on initial render
+  if (!hasLoggedInitialRender.current) {
+    console.log(`⏱️ [Performance] Table rendered in ${performance.now() - renderStartTime}ms`);
+    hasLoggedInitialRender.current = true;
+  }
 
   return (
     <div className="leaderboard-container">
