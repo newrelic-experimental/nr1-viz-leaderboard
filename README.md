@@ -15,7 +15,7 @@ Leaderboard Visualization is a dynamic and animated web app that allows you to v
 ![Podium Circles](docs/screen-podium.png)
 The podium visualization allows you to highlight top values from your data set in a podium style view. Display is customizable.
 
-[Podium visualization configuration instructions here](<(visualizations/podium/README.md)>)
+[Podium visualization configuration instructions here](visualizations/podium/README.md)
 
 > Data in screen shots is simulated!
 
@@ -23,7 +23,7 @@ The podium visualization allows you to highlight top values from your data set i
 ![Podium](docs/thermometer.png)
 The thermometer gauge visualization allows you to plot a single value against a target with a thermometer / totalizer style visualisation. 
 
-[Thermometer visualization configuration instructions here](<(visualizations/thermometer/README.md)>)
+[Thermometer visualization configuration instructions here](visualizations/thermometer/README.md)
 
 ## Installation
 
