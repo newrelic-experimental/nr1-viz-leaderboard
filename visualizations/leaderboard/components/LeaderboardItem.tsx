@@ -29,6 +29,16 @@ export const LeaderboardItemSchema = z.object({
   change_heading: z.string().optional().default("Change"),
   change_display: z.string().default("%"),
   comparison: z.union([z.literal("current"), z.literal("previous")]).optional(),
+  additional_column_1: z
+    .union([z.string(), z.number()])
+    .optional()
+    .transform((val) => (val !== undefined ? String(val) : undefined)),
+  additional_column_1_heading: z.string().optional().default("Additional 1"),
+  additional_column_2: z
+    .union([z.string(), z.number()])
+    .optional()
+    .transform((val) => (val !== undefined ? String(val) : undefined)),
+  additional_column_2_heading: z.string().optional().default("Additional 2"),
 });
 
 export type LeaderboardItemType = z.infer<typeof LeaderboardItemSchema>;
@@ -48,6 +58,8 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
     progress_percent,
     change,
     change_display,
+    additional_column_1,
+    additional_column_2,
   } = item;
 
   return (
@@ -74,15 +86,42 @@ export const LeaderboardItem: React.FC<{ item: LeaderboardItemType }> = ({
       <div className="leaderboard-item__value">
         <motion.div
           key={value_display ?? value}
-          initial={{ opacity: 0, y: -5 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 0.3,
+            duration: 0.1,
           }}
         >
           {value_display ?? value}
         </motion.div>
       </div>
+
+      {additional_column_1 !== undefined && (
+        <div className="leaderboard-item__additional-column-1">
+          <motion.div
+            key={additional_column_1}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.1,
+            }}
+          >
+            {additional_column_1}
+          </motion.div>
+        </div>
+      )}
+
+      {additional_column_2 !== undefined && (
+        <div className="leaderboard-item__additional-column-2">
+          <motion.div
+            key={additional_column_2}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.1,
+            }}
+          >
+            {additional_column_2}
+          </motion.div>
+        </div>
+      )}
 
       {progress_percent !== undefined && (
         <div className="leaderboard-item__progress">

@@ -9,7 +9,7 @@ type ConfigKeys =
   | "fetchInterval";
 
 type VizProps = {
-  [key in ConfigKeys]: any;
+  [key in ConfigKeys]?: any;
 };
 
 const VizPropsContext = createContext<VizProps | null>(null);

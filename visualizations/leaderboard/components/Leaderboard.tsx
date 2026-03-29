@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { z } from "zod";
 
@@ -18,10 +18,13 @@ const LeaderboardProps = z.object({
   data: LeaderboardSchema,
 });
 
-type LeaderboardItemProps = z.infer<typeof LeaderboardProps>;
+type LeaderboardItemProps = z.infer<typeof LeaderboardProps> & {
+  renderStartTime: number;
+};
 
-export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data }) => {
+export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data, renderStartTime }) => {
   const { sortedItems, toggleSort, sort } = useSortableItems(data);
+  const hasLoggedInitialRender = useRef(false);
 
   if (!sortedItems.length) {
     return null;
@@ -35,7 +38,17 @@ export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data }) => {
     progress_percent_heading,
     change,
     change_heading,
+    additional_column_1,
+    additional_column_1_heading,
+    additional_column_2,
+    additional_column_2_heading,
   } = sortedItems[0];
+
+  // Log render completion time only on initial render
+  if (!hasLoggedInitialRender.current) {
+    console.log(`⏱️ [Performance] Table rendered in ${performance.now() - renderStartTime}ms`);
+    hasLoggedInitialRender.current = true;
+  }
 
   return (
     <div className="leaderboard-container">
@@ -58,6 +71,24 @@ export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data }) => {
           {value_heading}{" "}
           {sort.key === "value" && (sort.direction === "asc" ? "▲" : "▼")}
         </div>
+        {additional_column_1 !== undefined && (
+          <div
+            className="leaderboard-item__additional-column-1 header"
+            onClick={() => toggleSort("additional_column_1")}
+          >
+            {additional_column_1_heading}{" "}
+            {sort.key === "additional_column_1" && (sort.direction === "asc" ? "▲" : "▼")}
+          </div>
+        )}
+        {additional_column_2 !== undefined && (
+          <div
+            className="leaderboard-item__additional-column-2 header"
+            onClick={() => toggleSort("additional_column_2")}
+          >
+            {additional_column_2_heading}{" "}
+            {sort.key === "additional_column_2" && (sort.direction === "asc" ? "▲" : "▼")}
+          </div>
+        )}
         {progress_percent !== undefined && (
           <div
             className="leaderboard-item__progress header"
@@ -84,10 +115,9 @@ export const Leaderboard: React.FC<LeaderboardItemProps> = ({ data }) => {
             <motion.div
               key={item.unique_id}
               layout
-              initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 1.5 }}
+              transition={{ duration: 0.3 }}
             >
               <LeaderboardItem item={{ ...item, position: index + 1 }} />
             </motion.div>

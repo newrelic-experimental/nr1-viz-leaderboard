@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { AutoSizer } from "nr1";
 
 import { useNerdGraphQuery } from "./hooks/nerdGraph/useNerdGraphQuery";
@@ -14,11 +14,14 @@ import { ErrorState } from "./components/ErrorState";
 type QueryResponse = LeaderboardItemType;
 
 export const App = ({ accountId }) => {
+  const appStartTime = useRef(performance.now());
+  
   if (!accountId) {
     return <EmptyState />;
   }
 
   const { query } = useProps();
+  
   const { data, error, lastUpdateStamp } = useNerdGraphQuery<QueryResponse>(
     query,
     LeaderboardSchema,
@@ -28,6 +31,10 @@ export const App = ({ accountId }) => {
     return <ErrorState errorMessage={error} />;
   }
 
+  if (!data) {
+    return null;
+  }
+
   const compared = useCompare(data, "value");
 
   return (
@@ -35,7 +42,7 @@ export const App = ({ accountId }) => {
       {({ width, height }) => {
         return (
           <div style={{ paddingRight: ".25rem", height: "100%" }}>
-            <Leaderboard data={compared} />
+            <Leaderboard data={compared} renderStartTime={lastUpdateStamp} />
           </div>
         );
       }}
